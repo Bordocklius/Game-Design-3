@@ -15,6 +15,7 @@ public class BuildingManager : MonoBehaviour
     public GameObject Building;
 
     public Button BuildButton;
+    public TextMeshProUGUI ResourceText;
 
     private void Awake()
     {
@@ -60,11 +61,21 @@ public class BuildingManager : MonoBehaviour
             {
                 if(obj.TryGetComponent<IResourceGatherer>(out IResourceGatherer resourceGatherer))
                 {
-                    GatheredResources += resourceGatherer.ExtractResources();
+                    GatheredResources += resourceGatherer.ExtractResources();                    
                 }
             }
             Debug.Log("Resources gathered: " + GatheredResources);
+            SetResourceText();
+            if (GatheredResources >= BuildingCost)
+            {
+                GatheredResources = BuildingCost;
+            }
             yield return new WaitForSeconds(ResourceGatheringRate);
         }
+    }
+
+    private void SetResourceText()
+    {
+        ResourceText.text = $"{GatheredResources}/{BuildingCost}";
     }
 }

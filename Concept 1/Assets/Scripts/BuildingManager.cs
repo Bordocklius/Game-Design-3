@@ -12,6 +12,8 @@ public class BuildingManager : MonoBehaviour
     public float ResourceGatheringRate = 1f;
     public GameObject[] resourceGatherers;
 
+    public GameObject Building;
+
     public Button BuildButton;
 
     private void Awake()
@@ -47,6 +49,7 @@ public class BuildingManager : MonoBehaviour
         GatheredResources = 0f;
         yield return StartCoroutine(ExtractResources());
         Debug.Log("end build");
+        Building.SetActive(true);
     }
 
     public IEnumerator ExtractResources()

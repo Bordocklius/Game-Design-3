@@ -2,20 +2,35 @@ using UnityEngine;
 
 public class ResourceNode : MonoBehaviour
 {
-    public float Value;
+    public float StartingValue;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private float _value;
+    public float Value
     {
-        
+        get
+        {
+            return _value;
+        }
+        set
+        {
+            _value = Mathf.Max(0f, value);
+
+            if(_value <= 0f)
+            {
+                Destroy(this.gameObject);
+            }
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
-        if(Value <= 0)
-        {
-            Destroy(this.gameObject);
-        }
+        Value = StartingValue;
+    }
+
+    public float Extract(float amount)
+    {
+        float extracted = Mathf.Min(amount, _value);
+        Value -= extracted;
+        return extracted;
     }
 }

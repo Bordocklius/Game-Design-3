@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.HableCurve;
 
 public class BuildingManager : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public class BuildingManager : MonoBehaviour
     public Material TransparantMat;
     public Material Greymat;
     public TextMeshProUGUI ResourceText;
-
+    
     private void Awake()
     {
         if(Instance != null && Instance != this)
@@ -29,6 +30,8 @@ public class BuildingManager : MonoBehaviour
             return;
         }
         Instance = this;
+
+        
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -58,7 +61,7 @@ public class BuildingManager : MonoBehaviour
         Debug.Log("end build");
         Building.GetComponent<MeshRenderer>().material = Greymat;
         BuildingImage.fillAmount = 1;
-        Building.GetComponent<Canvas>().enabled = false;
+        Building.GetComponentInChildren<Canvas>().enabled = false;
     }
 
     public IEnumerator ExtractResources()

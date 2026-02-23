@@ -1808,6 +1808,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 864628726069059442, guid: e4bc9c0ecb134224cbf7efde1fd5fc59, type: 3}
+      propertyPath: BuildingManager
+      value: 
+      objectReference: {fileID: 1425688305}
     - target: {fileID: 2612790583901343130, guid: e4bc9c0ecb134224cbf7efde1fd5fc59, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1852,41 +1856,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sawmill building radius
       objectReference: {fileID: 0}
-    - target: {fileID: 8553885724874372281, guid: e4bc9c0ecb134224cbf7efde1fd5fc59, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 309dfc7345fedcd4bb1fb1bc91fa6816, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5400490580251935044, guid: e4bc9c0ecb134224cbf7efde1fd5fc59, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7328264739878907264}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4bc9c0ecb134224cbf7efde1fd5fc59, type: 3}
 --- !u!1 &7328264739878907263 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5400490580251935044, guid: e4bc9c0ecb134224cbf7efde1fd5fc59, type: 3}
   m_PrefabInstance: {fileID: 7328264739878907262}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7328264739878907264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7328264739878907263}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2e381f152e14054aaf5d594815a45cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BuildingRadius
-  Radius: 10
-  ResourceNodes:
-    serializedVersion: 2
-    m_Bits: 64
-  RatePerSec: 5
-  BuildingManager: {fileID: 1425688305}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

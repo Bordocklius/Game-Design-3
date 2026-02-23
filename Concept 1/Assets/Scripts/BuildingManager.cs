@@ -15,6 +15,10 @@ public class BuildingManager : MonoBehaviour
     public GameObject Building;
 
     public Button BuildButton;
+    public Image BuildButtonImage;
+    public Image BuildingImage;
+    public Material TransparantMat;
+    public Material Greymat;
     public TextMeshProUGUI ResourceText;
 
     private void Awake()
@@ -48,16 +52,20 @@ public class BuildingManager : MonoBehaviour
     {
         Debug.Log("Start build");
         GatheredResources = 0f;
+        Building.SetActive(true);
+        Building.GetComponent<MeshRenderer>().material = TransparantMat;
         yield return StartCoroutine(ExtractResources());
         Debug.Log("end build");
-        Building.SetActive(true);
+        Building.GetComponent<MeshRenderer>().material = Greymat;
+        BuildingImage.fillAmount = 1;
+        Building.GetComponent<Canvas>().enabled = false;
     }
 
     public IEnumerator ExtractResources()
     {
         while(GatheredResources < BuildingCost)
         {
-            foreach(GameObject obj in resourceGatherers)
+            foreach (GameObject obj in resourceGatherers)
             {
                 if(obj.TryGetComponent<IResourceGatherer>(out IResourceGatherer resourceGatherer))
                 {
@@ -69,7 +77,10 @@ public class BuildingManager : MonoBehaviour
             if (GatheredResources >= BuildingCost)
             {
                 GatheredResources = BuildingCost;
+                break;
             }
+            BuildButtonImage.fillAmount = GatheredResources / BuildingCost;
+            BuildingImage.fillAmount = GatheredResources / BuildingCost;
             yield return new WaitForSeconds(ResourceGatheringRate);
         }
     }

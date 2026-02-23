@@ -1,8 +1,12 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ResourceNode : MonoBehaviour
 {
     public float StartingValue;
+    public Canvas WorldCanvas;
+    public Image FillImage;
+
 
     private float _value;
     public float Value
@@ -15,6 +19,13 @@ public class ResourceNode : MonoBehaviour
         {
             _value = Mathf.Max(0f, value);
 
+
+            if(_value < StartingValue)
+            {
+                if(!WorldCanvas.gameObject.activeSelf)
+                    WorldCanvas.gameObject.SetActive(true);
+                FillImage.fillAmount = _value / StartingValue;
+            }
             if(_value <= 0f)
             {
                 Destroy(this.gameObject);

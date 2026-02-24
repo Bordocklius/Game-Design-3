@@ -1130,7 +1130,7 @@ GameObject:
   - component: {fileID: 1101238086}
   - component: {fileID: 1101238085}
   - component: {fileID: 1101238084}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1354,6 +1354,9 @@ MonoBehaviour:
   - {fileID: 7328264739878907263}
   Building: {fileID: 2146524196}
   PreviewBuilding: {fileID: 900786861776045492, guid: 4c2c72e1f15b6554eb428c12d1ec97e8, type: 3}
+  GroundLayer:
+    serializedVersion: 2
+    m_Bits: 128
   BuildButton: {fileID: 551649795}
   BuildButtonImage: {fileID: 551649796}
   BuildingImage: {fileID: 971187175}

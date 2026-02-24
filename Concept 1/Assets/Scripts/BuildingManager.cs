@@ -1,8 +1,8 @@
 using System.Collections;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.Rendering.HableCurve;
 
 public class BuildingManager : MonoBehaviour
 {
@@ -14,14 +14,20 @@ public class BuildingManager : MonoBehaviour
     public GameObject[] resourceGatherers;
 
     public GameObject Building;
-
+    public GameObject PreviewBuilding;
+    public LayerMask GroundLayer;
     public Button BuildButton;
     public Image BuildButtonImage;
     public Image BuildingImage;
     public Material TransparantMat;
     public Material Greymat;
     public TextMeshProUGUI ResourceText;
-    
+    public AudioSource AudioSource;
+    public AudioClip BuildingSound;
+
+    private GameObject buildingToPlace;
+    private GameObject currentPreview;
+
     private void Awake()
     {
         if(Instance != null && Instance != this)
@@ -43,25 +49,66 @@ public class BuildingManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (buildingToPlace == null)
+            return;
+
+        HandlePlacement();
     }
 
     public void BuildBuilding()
     {
-        StartCoroutine(BuildBuildingCoroutine());
+        StartPlacing(Building, PreviewBuilding);
     }
 
-    public IEnumerator BuildBuildingCoroutine()
+    private void StartPlacing(GameObject buildingPrefab, GameObject previewPrefab)
+    {
+        buildingToPlace = Building;
+        currentPreview = Instantiate(PreviewBuilding);
+    }
+
+    private void HandlePlacement()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, 100f, GroundLayer))
+        {
+            currentPreview.transform.position = hit.point;
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                PlaceBuilding(hit.point);
+            }
+        }
+    }
+
+    private void PlaceBuilding(Vector3 pos)
+    {
+        GameObject placedBuilding = Instantiate(buildingToPlace, pos + new Vector3(0, 0.5f, 0), Quaternion.identity);
+
+        Destroy(currentPreview);
+        buildingToPlace = null;
+
+        // Start the build process for the placed building
+        StartCoroutine(BuildBuildingCoroutine(placedBuilding));
+    }
+
+    public IEnumerator BuildBuildingCoroutine(GameObject building)
     {
         Debug.Log("Start build");
         GatheredResources = 0f;
-        Building.SetActive(true);
-        Building.GetComponent<MeshRenderer>().material = TransparantMat;
+        building.SetActive(true);
+        building.GetComponent<MeshRenderer>().material = TransparantMat;
+        Image[] images = building.GetComponentsInChildren<Image>();
+        BuildingImage = images.Where(x => x.name == "foreground").FirstOrDefault();
+        AudioSource.Play();
         yield return StartCoroutine(ExtractResources());
+
         Debug.Log("end build");
-        Building.GetComponent<MeshRenderer>().material = Greymat;
+        AudioSource.Stop();
+        building.GetComponent<MeshRenderer>().material = Greymat;
         BuildingImage.fillAmount = 1;
-        Building.GetComponentInChildren<Canvas>().enabled = false;
+        building.GetComponentInChildren<Canvas>().enabled = false;
     }
 
     public IEnumerator ExtractResources()

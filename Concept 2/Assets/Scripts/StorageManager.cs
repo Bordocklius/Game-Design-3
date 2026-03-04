@@ -66,6 +66,8 @@ public class StorageManager : MonoBehaviour
     [SerializeField] private float _resourceTickRate;
     private float _timer = 0f;
 
+    [SerializeField, Range(0.5f,1f)] private float _resourcesLostModifier;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -108,7 +110,7 @@ public class StorageManager : MonoBehaviour
     {
         _storageBuildings.Remove(storageBuilding);
         MaxStorageCapacity -= storageBuilding.StorageCapacity;
-        CurrentStoredResources -= storageBuilding.StoredResources;
+        CurrentStoredResources -= storageBuilding.StoredResources * _resourcesLostModifier;
     }
 
     private void UpdateMaxStorageText()

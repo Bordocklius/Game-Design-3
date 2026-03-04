@@ -870,10 +870,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StorageManager
   _maxStorageCapacity: 100
   _currentStoredResources: 0
+  _storageBuildings: []
   _currentStorageText: {fileID: 984050643}
   _maxStorageText: {fileID: 431247584}
   _resourcesPerTick: 5
   _resourceTickRate: 0.5
+  _resourcesLostModifier: 0.75
 --- !u!1 &954072367
 GameObject:
   m_ObjectHideFlags: 0

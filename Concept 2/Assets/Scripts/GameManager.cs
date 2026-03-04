@@ -1,4 +1,7 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UIElements;
+using static UnityEditor.PlayerSettings;
 
 public class GameManager : MonoBehaviour
 {
@@ -24,6 +27,11 @@ public class GameManager : MonoBehaviour
         private set { _instance = value; }
     }
 
+    [Space(10), Header("Building Placement")]
+    public LayerMask GroundLayer;
+    private GameObject _buildingToPlace;
+    private GameObject _currentPreviewBuilding;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -44,6 +52,39 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (_buildingToPlace == null)
+            return;
+
+        HandleBuildingPlacement();
+    }
+
+    public void StartPlacing(GameObject buildingPrefab, GameObject previewPrefab)
+    {
+        _buildingToPlace = buildingPrefab;
+        _currentPreviewBuilding = Instantiate(previewPrefab);
+    }
+
+    private void HandleBuildingPlacement()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, 100f, GroundLayer))
+        {
+            _currentPreviewBuilding.transform.position = hit.point;
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                PlaceBuilding(hit.point);
+            }
+        }
+    }
+
+    private void PlaceBuilding(Vector3 position)
+    {
+        GameObject placedBuilding = Instantiate(_buildingToPlace, position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+
+        Destroy(_currentPreviewBuilding);
+        _buildingToPlace = null;
     }
 }

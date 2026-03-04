@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -53,6 +55,7 @@ public class StorageManager : MonoBehaviour
         }
     }
 
+    [SerializeField] private List<StorageBuilding> _storageBuildings;
 
     [Space(10), Header("TextFields")]
     [SerializeField] private TextMeshProUGUI _currentStorageText;
@@ -88,8 +91,24 @@ public class StorageManager : MonoBehaviour
         if (_timer > _resourceTickRate)
         {
             AddResources(_resourcesPerTick);
+            StorageBuilding storage = _storageBuildings.Where(x => x.StoredResources < x.StorageCapacity).FirstOrDefault();
+            if(storage != null)
+                storage.StoredResources += _resourcesPerTick;
             _timer -= _resourceTickRate;
         }
+    }
+
+    public void AddStorageBuilding(StorageBuilding storageBuilding)
+    {
+        _storageBuildings.Add(storageBuilding);
+        MaxStorageCapacity += storageBuilding.StorageCapacity;
+    }
+
+    public void RemoveStorageBuildings(StorageBuilding storageBuilding)
+    {
+        _storageBuildings.Remove(storageBuilding);
+        MaxStorageCapacity -= storageBuilding.StorageCapacity;
+        CurrentStoredResources -= storageBuilding.StoredResources;
     }
 
     private void UpdateMaxStorageText()
@@ -112,6 +131,9 @@ public class StorageManager : MonoBehaviour
         if(CurrentStoredResources >= amount)
         {
             CurrentStoredResources -= amount;
+            StorageBuilding storage = _storageBuildings.Where(x => x.StoredResources < x.StorageCapacity).FirstOrDefault();
+            if (storage != null)
+                storage.StoredResources -= amount;
             Debug.Log($"Using up {amount} resources");
         }
         else

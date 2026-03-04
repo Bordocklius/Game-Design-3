@@ -58,6 +58,11 @@ public class StorageManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _currentStorageText;
     [SerializeField] private TextMeshProUGUI _maxStorageText;
 
+    [Space(10), Header("Resource generation")]
+    [SerializeField] private float _resourcesPerTick;
+    [SerializeField] private float _resourceTickRate;
+    private float _timer = 0f;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -79,7 +84,12 @@ public class StorageManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        _timer += Time.deltaTime;
+        if (_timer > _resourceTickRate)
+        {
+            AddResources(_resourcesPerTick);
+            _timer -= _resourceTickRate;
+        }
     }
 
     private void UpdateMaxStorageText()

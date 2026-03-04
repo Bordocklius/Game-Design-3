@@ -17,6 +17,8 @@ public class StorageBuilding : MonoBehaviour
 
             if (_storedResources > StorageCapacity)
                 _storedResources = StorageCapacity;
+            if(_storedResources < 0)
+                _storedResources = 0;
 
             UpdateText();
         }

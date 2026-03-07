@@ -860,7 +860,6 @@ GameObject:
   - component: {fileID: 610037416}
   - component: {fileID: 610037415}
   - component: {fileID: 610037414}
-  - component: {fileID: 610037413}
   m_Layer: 5
   m_Name: Destroy storage
   m_TagString: Untagged
@@ -888,21 +887,6 @@ RectTransform:
   m_AnchoredPosition: {x: 113.6, y: -131.7}
   m_SizeDelta: {x: 200, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &610037413
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 610037411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3760fa2be5f36e45aed706bb16cf400, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BuildButton
-  _buildingPrefab: {fileID: 3796468701184697937, guid: 2216213052dce4546939a36127b0f012, type: 3}
-  _previewPrefab: {fileID: 3796468701184697937, guid: 280758e863bc34043891860a1baa8666, type: 3}
-  _buildingCost: 50
 --- !u!114 &610037414
 MonoBehaviour:
   m_ObjectHideFlags: 0

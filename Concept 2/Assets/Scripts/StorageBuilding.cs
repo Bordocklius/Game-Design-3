@@ -46,11 +46,6 @@ public class StorageBuilding : MonoBehaviour
 
     private void OnDestroy()
     {
-        StorageManager.Instance.RemoveStorageBuildings(this);
-    }
-
-    private void OnMouseDown()
-    {
-        Destroy(this.gameObject);
+        StorageManager.Instance.RemoveStorageBuilding(this);
     }
 }

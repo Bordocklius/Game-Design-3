@@ -1,7 +1,7 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-using static UnityEditor.PlayerSettings;
 
 public class GameManager : MonoBehaviour
 {
@@ -86,5 +86,10 @@ public class GameManager : MonoBehaviour
 
         Destroy(_currentPreviewBuilding);
         _buildingToPlace = null;
+    }
+
+    public void DestroyRandomStorage()
+    {
+        StorageManager.Instance.DestroyRandomStorageBuilding();
     }
 }

@@ -106,11 +106,18 @@ public class StorageManager : MonoBehaviour
         MaxStorageCapacity += storageBuilding.StorageCapacity;
     }
 
-    public void RemoveStorageBuildings(StorageBuilding storageBuilding)
+    public void RemoveStorageBuilding(StorageBuilding storageBuilding)
     {
         _storageBuildings.Remove(storageBuilding);
         MaxStorageCapacity -= storageBuilding.StorageCapacity;
         CurrentStoredResources -= storageBuilding.StoredResources * _resourcesLostModifier;
+    }
+
+    public void DestroyRandomStorageBuilding()
+    {
+        int randomIndex = Random.Range(0, _storageBuildings.Count);
+        StorageBuilding obj = _storageBuildings[randomIndex];
+        Destroy(obj.gameObject);
     }
 
     private void UpdateMaxStorageText()

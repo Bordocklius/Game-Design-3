@@ -24,6 +24,9 @@ public class ResourcePacket : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (!StorageManager.Instance.HasRoomForStorage(PacketValue))
+            return;
+
         AddResourcesToPool();
         Destroy(this.gameObject);
     }
@@ -31,5 +34,6 @@ public class ResourcePacket : MonoBehaviour
     private void AddResourcesToPool()
     {
         StorageManager.Instance.AddResources(PacketValue);
+        Debug.Log($"Adding {PacketValue}");
     }
 }

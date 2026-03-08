@@ -26,7 +26,11 @@ public class StorageBuilding : MonoBehaviour
     }
 
     [SerializeField] private TextMeshProUGUI _storageText;
+
+
+    [Space(10), Header("Resource packets")]
     [SerializeField] private GameObject _resourcePacketPrefab;
+    [SerializeField, Range(0.5f, 1f)] private float _resourcesLost;
     [SerializeField] private float _spawnSpread;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -51,14 +55,20 @@ public class StorageBuilding : MonoBehaviour
     {
         SpawnResourcePackets();
 
+        // Preserve resources left
+        float keptResources = StoredResources * (1f - _resourcesLost);
+        Debug.Log($"Resources kept: {keptResources}");
         StorageManager.Instance.RemoveStorageBuilding(this);
+        if(keptResources > 0f)
+            StorageManager.Instance.AddResources(keptResources);
     }
 
     private void SpawnResourcePackets()
     {
         float packetMax = _resourcePacketPrefab.GetComponent<ResourcePacket>().MaxPacketValue;
+        float availableResources = StoredResources * _resourcesLost;
         int maxPacketsToSpawn = Mathf.CeilToInt(StorageCapacity / packetMax);
-        float availableResources = StoredResources;
+
 
         // Build list of packet values (maxed out packets with possibly one remainder)
         List<float> values = new List<float>();
@@ -69,13 +79,7 @@ public class StorageBuilding : MonoBehaviour
             availableResources -= value;
         }
 
-        // If we hit the max packet limit but there's still remaining resources,
-        // fold the remainder into the last packet (so nothing is lost).
-        if (availableResources > 0f && values.Count > 0)
-        {
-            values[values.Count - 1] += availableResources;
-            availableResources = 0f;
-        }
+        Debug.Log($"Spawning {values.Count} packets");
 
         foreach(var value in values)
         {

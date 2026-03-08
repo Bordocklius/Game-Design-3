@@ -55,7 +55,7 @@ public class StorageManager : MonoBehaviour
         }
     }
 
-    [SerializeField] private List<StorageBuilding> _storageBuildings;
+    [SerializeField] private List<StorageBuilding> _storageBuildings;    
 
     [Space(10), Header("TextFields")]
     [SerializeField] private TextMeshProUGUI _currentStorageText;
@@ -118,6 +118,11 @@ public class StorageManager : MonoBehaviour
         int randomIndex = Random.Range(0, _storageBuildings.Count);
         StorageBuilding obj = _storageBuildings[randomIndex];
         Destroy(obj.gameObject);
+    }
+
+    public bool HasRoomForStorage(float amount)
+    {
+        return CurrentStoredResources + amount <= MaxStorageCapacity;
     }
 
     private void UpdateMaxStorageText()

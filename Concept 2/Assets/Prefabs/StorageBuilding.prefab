@@ -400,6 +400,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StorageBuilding
   StorageCapacity: 50
   _storageText: {fileID: 4754466574354413732}
+  _resourcePacketPrefab: {fileID: 1858854358323713841, guid: 0aea353359944f34c8806de629dd7f7e, type: 3}
+  _spawnSpread: 2
 --- !u!65 &965367084875095877
 BoxCollider:
   m_ObjectHideFlags: 0

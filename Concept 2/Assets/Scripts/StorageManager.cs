@@ -110,7 +110,7 @@ public class StorageManager : MonoBehaviour
     {
         _storageBuildings.Remove(storageBuilding);
         MaxStorageCapacity -= storageBuilding.StorageCapacity;
-        CurrentStoredResources -= storageBuilding.StoredResources * _resourcesLostModifier;
+        CurrentStoredResources -= storageBuilding.StoredResources;
     }
 
     public void DestroyRandomStorageBuilding()

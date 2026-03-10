@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class StorageBuilding : MonoBehaviour
 {
-
     [Space(10), Header("Settings")]
     public float StorageCapacity;
 

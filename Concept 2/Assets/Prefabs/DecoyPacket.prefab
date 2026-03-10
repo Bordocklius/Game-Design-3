@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1792570192264389158}
   - component: {fileID: 4438463016328317581}
   - component: {fileID: 8603734292477708377}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DecoyPacket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,5 +125,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62bd1fd6c653eee4bbc390710de44f14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ResourcePacket
-  PacketValue: 0
-  MaxPacketValue: 0
+  PacketValue: 10
+  MaxPacketValue: 10

@@ -22,12 +22,14 @@ public class DecoyStorage : MonoBehaviour
     {
         float packetMax = _resourcePacketPrefab.GetComponent<ResourcePacket>().MaxPacketValue;
         float availableResources = StoredResources * _resourcesLost;
-        int maxPacketsToSpawn = Mathf.CeilToInt(StorageCapacity / packetMax);
+        int maxPacketsToSpawn = Mathf.CeilToInt(StorageCapacity / packetMax); 
 
+        // Spawn at least 1 packet
+        int randomPacketsToSpawn = Random.Range(1, maxPacketsToSpawn);
 
         // Build list of packet values (maxed out packets with possibly one remainder)
         List<float> values = new List<float>();
-        while (availableResources > 0f && values.Count < maxPacketsToSpawn)
+        while (availableResources > 0f && values.Count < randomPacketsToSpawn)
         {
             float value = Mathf.Min(packetMax, availableResources);
             values.Add(value);

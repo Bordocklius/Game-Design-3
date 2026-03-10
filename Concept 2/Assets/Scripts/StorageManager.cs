@@ -137,7 +137,7 @@ public class StorageManager : MonoBehaviour
             bool hasStorage = false;
             foreach (Collider hit in hits)
             {
-                if (hit.gameObject.TryGetComponent<StorageBuilding>(out _))
+                if (hit.gameObject.TryGetComponent<StorageBuilding>(out _) || hit.gameObject.TryGetComponent<DecoyStorage>(out _))
                 {
                     hasStorage = true;
                     break;
@@ -162,10 +162,14 @@ public class StorageManager : MonoBehaviour
 
         foreach (Collider hit in chosenHits)
         {
-            if (hit.gameObject.TryGetComponent<StorageBuilding>(out StorageBuilding storageBuilding))
-            {
-                Destroy(storageBuilding.gameObject);
-            }
+            //if (hit.gameObject.TryGetComponent<StorageBuilding>(out StorageBuilding storageBuilding) || hit.gameObject.TryGetComponent<DecoyStorage>(out DecoyStorage decoyStorage))
+            //{
+            //    if(storageBuilding != null)
+            //        Destroy(storageBuilding.gameObject);
+            //    if(decoyStorage != null)
+            //        Destroy(decoyStorage.gameObject);
+            //}
+            Destroy(hit.gameObject);
         }
     }
 

@@ -1650,7 +1650,7 @@ MonoBehaviour:
   - {fileID: 771386888}
   _layermask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
 --- !u!1 &954072367
 GameObject:
   m_ObjectHideFlags: 0

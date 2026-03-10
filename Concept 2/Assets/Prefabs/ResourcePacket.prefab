@@ -127,3 +127,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ResourcePacket
   PacketValue: 0
   MaxPacketValue: 10
+  DecayTimer: 5
+  DecayValue: 1

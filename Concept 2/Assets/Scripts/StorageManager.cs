@@ -50,6 +50,8 @@ public class StorageManager : MonoBehaviour
 
             if (_currentStoredResources > MaxStorageCapacity)
                 _currentStoredResources = MaxStorageCapacity;
+            if(_currentStoredResources < 0)
+                _currentStoredResources = 0;
 
             UpdateCurrentStorageText();
         }
@@ -67,6 +69,8 @@ public class StorageManager : MonoBehaviour
     private float _timer = 0f;
 
     [SerializeField, Range(0.5f,1f)] private float _resourcesLostModifier;
+    [SerializeField] private List<OverlapArea> _areas;
+    [SerializeField] private LayerMask _layermask;
 
     private void Awake()
     {
@@ -118,6 +122,51 @@ public class StorageManager : MonoBehaviour
         int randomIndex = Random.Range(0, _storageBuildings.Count);
         StorageBuilding obj = _storageBuildings[randomIndex];
         Destroy(obj.gameObject);
+    }
+
+    public void DestroyRandomArea()
+    {
+        // Collect indices of areas that contain at least one StorageBuilding
+        List<int> validIndices = new List<int>();
+        for (int i = 0; i < _areas.Count; i++)
+        {
+            GameObject areaObj = _areas[i].gameObject;
+            Vector3 halfExtents = areaObj.transform.localScale * 0.5f;
+            Collider[] hits = Physics.OverlapBox(areaObj.transform.position, halfExtents, areaObj.transform.rotation, _layermask);
+
+            bool hasStorage = false;
+            foreach (Collider hit in hits)
+            {
+                if (hit.gameObject.TryGetComponent<StorageBuilding>(out _))
+                {
+                    hasStorage = true;
+                    break;
+                }
+            }
+
+            if (hasStorage)
+                validIndices.Add(i);
+        }
+
+        if (validIndices.Count == 0)
+        {
+            Debug.Log("No overlap area contains any StorageBuilding.");
+            return;
+        }
+
+        // Pick a random valid area and destroy storage buildings inside it
+        int chosenIndex = validIndices[Random.Range(0, validIndices.Count)];
+        GameObject chosenArea = _areas[chosenIndex].gameObject;
+        Vector3 chosenHalfExtents = chosenArea.transform.localScale * 0.5f;
+        Collider[] chosenHits = Physics.OverlapBox(chosenArea.transform.position, chosenHalfExtents, chosenArea.transform.rotation, _layermask);
+
+        foreach (Collider hit in chosenHits)
+        {
+            if (hit.gameObject.TryGetComponent<StorageBuilding>(out StorageBuilding storageBuilding))
+            {
+                Destroy(storageBuilding.gameObject);
+            }
+        }
     }
 
     public bool HasRoomForStorage(float amount)

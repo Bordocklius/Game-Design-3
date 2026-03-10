@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 990959055151138316}
   - component: {fileID: 3513685696254387882}
   - component: {fileID: 5193958872969139451}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 2971158288547749963}
   - component: {fileID: 5535400007853762118}
   - component: {fileID: 4754466574354413732}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Stored resources
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,7 +251,7 @@ GameObject:
   - component: {fileID: 284952095307486480}
   - component: {fileID: 4197656620766770244}
   - component: {fileID: 8671832912960567000}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -362,7 +362,7 @@ GameObject:
   - component: {fileID: 4941850125633413749}
   - component: {fileID: 6787825174619857890}
   - component: {fileID: 965367084875095877}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StorageBuilding
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -433,7 +433,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8360586854509091661}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: VisualRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -1,4 +1,6 @@
-﻿
+﻿using UnityEngine;
+
+[CreateAssetMenu(fileName = "WindElement", menuName = "Magic/Wind Element")]
 public class WindElement: Element
 {
     public float Speed;

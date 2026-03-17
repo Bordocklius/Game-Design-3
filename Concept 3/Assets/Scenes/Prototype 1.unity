@@ -432,6 +432,13 @@ MonoBehaviour:
   ManaTickTimer: 1
   ManaFillImage: {fileID: 758056341}
   ManaText: {fileID: 1321878502}
+  ElementQueueParent: {fileID: 2091011229}
+  ElementImages:
+  - {fileID: 1842401380}
+  - {fileID: 769346488}
+  - {fileID: 945543836}
+  - {fileID: 2043790092}
+  - {fileID: 1424131388}
 --- !u!4 &646207803
 Transform:
   m_ObjectHideFlags: 0
@@ -613,7 +620,7 @@ GameObject:
   - component: {fileID: 769346489}
   - component: {fileID: 769346488}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: SpriteContainer (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -688,7 +695,7 @@ GameObject:
   - component: {fileID: 945543837}
   - component: {fileID: 945543836}
   m_Layer: 5
-  m_Name: Image (2)
+  m_Name: SpriteContainer (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -900,7 +907,7 @@ GameObject:
   - component: {fileID: 1424131389}
   - component: {fileID: 1424131388}
   m_Layer: 5
-  m_Name: Image (4)
+  m_Name: SpriteContainer (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1050,7 +1057,7 @@ GameObject:
   - component: {fileID: 1842401381}
   - component: {fileID: 1842401380}
   m_Layer: 5
-  m_Name: Image
+  m_Name: SpriteContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1228,7 +1235,7 @@ GameObject:
   - component: {fileID: 2043790093}
   - component: {fileID: 2043790092}
   m_Layer: 5
-  m_Name: Image (3)
+  m_Name: SpriteContainer (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

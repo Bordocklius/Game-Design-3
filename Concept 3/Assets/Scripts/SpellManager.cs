@@ -31,7 +31,9 @@ public class SpellManager : MonoBehaviour
 
 
     [Space(10), Header("SpellQueue")]
-    [SerializeField] private Queue<Element> _elementQueue = new();
+    [SerializeField] private Queue<Element> _elementQueue = new(5);
+    public RectTransform ElementQueueParent;
+    public List<Image> ElementImages;
 
     private void Awake()
     {
@@ -59,6 +61,10 @@ public class SpellManager : MonoBehaviour
     private void Start()
     {
         UpdateManaUI();
+        foreach (var element in ElementImages)
+        {
+            element.gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -96,7 +102,27 @@ public class SpellManager : MonoBehaviour
 
     public void AddElementToQueue(Element element)
     {
+        if(_elementQueue.Count >= 5)
+        {
+            Debug.LogError("Trying to add element when queue is full");
+            return;
+        }
+
         _elementQueue.Enqueue(element);
+        Image image = ElementImages[_elementQueue.Count - 1];
+        image.sprite = element.ElementSprite;
+        image.gameObject.SetActive(true);
+
         Debug.Log($"Queued element: {element}");
+    }
+
+    public void CastElementQueue()
+    {
+        SpellData spellData = new SpellData();
+
+        foreach(Element element in _elementQueue)
+        {
+            element.ApplyElement(spellData);
+        }
     }
 }

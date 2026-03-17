@@ -27,4 +27,9 @@ public class SpellInputHandler : MonoBehaviour
     {
         SpellManager.Instance.AddElementToQueue(WindElement);
     }
+
+    public void OnAttack()
+    {
+
+    }
 }

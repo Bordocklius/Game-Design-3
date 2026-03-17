@@ -5,6 +5,7 @@ public abstract class Element : ScriptableObject
     [Space(10), Header("Element settings")]
     public string ElementName;
     public float ManaCost;
+    public Sprite ElementSprite;
 
     public abstract void ApplyElement(SpellData spell);
 }

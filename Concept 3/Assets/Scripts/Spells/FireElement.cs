@@ -8,6 +8,7 @@ public class FireElement : Element
 
     public override void ApplyElement(SpellData spell)
     {
+        spell.ProjectilePrefab.Add(ProjectilePrefab);
         spell.Damage += Damage;
     }
 }

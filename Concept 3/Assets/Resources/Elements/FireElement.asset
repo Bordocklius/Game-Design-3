@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FireElement
   ElementName: Fire
   ManaCost: 10
+  ElementSprite: {fileID: 21300000, guid: a6a7705795462454194a85b6c3dcbf65, type: 3}
   ProjectilePrefab: {fileID: 1112050095360076018, guid: dc235791668a9864999de29ea8068b90, type: 3}
   Damage: 10

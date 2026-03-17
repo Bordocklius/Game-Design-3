@@ -5,6 +5,6 @@ public class SpellData
 {
     public GameObject ProjectilePrefab;
     public float Damage;
-    public float Speed;
+    public float Speed = 10f;
     public float SpellCost;
 }

@@ -31,5 +31,7 @@ public class SpellInputHandler : MonoBehaviour
     public void OnAttack(InputValue inputValue)
     {
         SpellData spell = SpellManager.Instance.CastElementQueue();
+        GameObject projectile = Instantiate(spell.ProjectilePrefab);
+        
     }
 }

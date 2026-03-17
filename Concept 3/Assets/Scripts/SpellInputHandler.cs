@@ -28,8 +28,8 @@ public class SpellInputHandler : MonoBehaviour
         SpellManager.Instance.AddElementToQueue(WindElement);
     }
 
-    public void OnAttack()
+    public void OnAttack(InputValue inputValue)
     {
-
+        SpellData spell = SpellManager.Instance.CastElementQueue();
     }
 }

@@ -7,5 +7,8 @@ public abstract class Element : ScriptableObject
     public float ManaCost;
     public Sprite ElementSprite;
 
-    public abstract void ApplyElement(SpellData spell);
+    public virtual void ApplyElement(SpellData spell)
+    {
+        spell.SpellCost += ManaCost;
+    }
 }

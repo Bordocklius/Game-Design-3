@@ -116,7 +116,7 @@ public class SpellManager : MonoBehaviour
         Debug.Log($"Queued element: {element}");
     }
 
-    public void CastElementQueue()
+    public SpellData CastElementQueue()
     {
         SpellData spellData = new SpellData();
 
@@ -124,5 +124,7 @@ public class SpellManager : MonoBehaviour
         {
             element.ApplyElement(spellData);
         }
+
+        return spellData;
     }
 }

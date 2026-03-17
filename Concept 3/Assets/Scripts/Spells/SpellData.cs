@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SpellData
 {
-    public List<GameObject> ProjectilePrefab = new(5);
+    public GameObject ProjectilePrefab;
     public float Damage;
     public float Speed;
     public float SpellCost;

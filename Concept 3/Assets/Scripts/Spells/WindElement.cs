@@ -7,6 +7,7 @@ public class WindElement: Element
 
     public override void ApplyElement(SpellData spell)
     {
+        base.ApplyElement(spell);
         spell.Speed += Speed;
     }
 }

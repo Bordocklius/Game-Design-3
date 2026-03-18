@@ -429,7 +429,7 @@ MonoBehaviour:
   _mana: 0
   MaxMana: 100
   ManaPerTick: 5
-  ManaTickTimer: 1
+  ManaTickTimer: 0.5
   ManaFillImage: {fileID: 758056341}
   ManaText: {fileID: 1321878502}
   ElementQueueParent: {fileID: 2091011229}

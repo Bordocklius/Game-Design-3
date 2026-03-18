@@ -32,7 +32,7 @@ public class SpellManager : MonoBehaviour
 
     [Space(10), Header("SpellQueue")]
     [SerializeField] private Queue<Element> _elementQueue = new(5);
-    public bool IsElementQueueEmpty => _elementQueue.Count > 0;
+    public bool IsElementQueueEmpty => _elementQueue.Count <= 0;
     public RectTransform ElementQueueParent;
     public List<Image> ElementImages;
 

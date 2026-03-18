@@ -1024,6 +1024,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "SpellSlot 3",
+                    "type": "Button",
+                    "id": "3e237689-0f24-49ac-8040-01f1c4496758",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Attack",
                     "type": "Button",
                     "id": "d8563797-1d15-450f-b11a-4d01ebb57352",
@@ -1108,6 +1117,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "SpellSlot 2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "373e40cf-7487-4707-8b98-89e1b291dc96",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpellSlot 3",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

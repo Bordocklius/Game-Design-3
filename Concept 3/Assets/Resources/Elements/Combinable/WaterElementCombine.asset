@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e759a431eb19c242af78ee4dad77eba, type: 3}
+  m_Name: WaterElementCombine
+  m_EditorClassIdentifier: Assembly-CSharp::WaterElementCombineable
+  ElementName: Water
+  ManaCost: 10
+  ElementSprite: {fileID: 21300000, guid: e30ceecb27326574fb34271700046bab, type: 3}
+  CombinableElements:
+  - {fileID: 11400000, guid: 9034325649601954392fbe656f439387, type: 2}
+  ResultingElements:
+  - {fileID: 11400000, guid: 51cf6c72a75fe3743b22207eb368beaf, type: 2}
+  ProjectilePrefab: {fileID: 1112050095360076018, guid: 073c445a1f49d924e827714bb98e07ba, type: 3}
+  Damage: 10

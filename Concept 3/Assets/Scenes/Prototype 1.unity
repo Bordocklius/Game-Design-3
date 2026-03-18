@@ -432,6 +432,7 @@ MonoBehaviour:
   ManaTickTimer: 0.5
   ManaFillImage: {fileID: 758056341}
   ManaText: {fileID: 1321878502}
+  ElementQueue: []
   ElementQueueParent: {fileID: 2091011229}
   ElementImages:
   - {fileID: 1842401380}
@@ -1319,7 +1320,8 @@ MonoBehaviour:
   GroundMask:
     serializedVersion: 2
     m_Bits: 64
-  FireElement: {fileID: 11400000, guid: 0f833657b35a8ba43a3745c01287b0a9, type: 2}
+  FireElement: {fileID: 11400000, guid: 9034325649601954392fbe656f439387, type: 2}
+  WaterElement: {fileID: 11400000, guid: d0b1b65abe6f58548a440f35993c9994, type: 2}
   WindElement: {fileID: 11400000, guid: 95730a1a376ba154e8c997d3746277c7, type: 2}
 --- !u!1 &2091011228
 GameObject:

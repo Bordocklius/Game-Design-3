@@ -7,7 +7,8 @@ public class SpellInputHandler : MonoBehaviour
     public Transform StartPoint;
     public LayerMask GroundMask;
 
-    public FireElement FireElement;
+    public FireElementCombineable FireElement;
+    public WaterElementCombineable WaterElement;
     public WindElement WindElement;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -28,6 +29,11 @@ public class SpellInputHandler : MonoBehaviour
     }
 
     public void OnSpellSlot2(InputValue inputValue)
+    {
+        SpellManager.Instance.AddElementToQueue(WaterElement);
+    }
+
+    public void OnSpellSlot3(InputValue inputValue)
     {
         SpellManager.Instance.AddElementToQueue(WindElement);
     }

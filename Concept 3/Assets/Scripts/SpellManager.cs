@@ -31,8 +31,8 @@ public class SpellManager : MonoBehaviour
 
 
     [Space(10), Header("SpellQueue")]
-    [SerializeField] private List<Element> _elementQueue = new(5);
-    public bool IsElementQueueEmpty => _elementQueue.Count <= 0;
+    public List<Element> ElementQueue = new(5);
+    public bool IsElementQueueEmpty => ElementQueue.Count <= 0;
     public RectTransform ElementQueueParent;
     public List<Image> ElementImages;
 
@@ -100,21 +100,69 @@ public class SpellManager : MonoBehaviour
 
     public void AddElementToQueue(Element element)
     {
-        if(_elementQueue.Count >= 5)
-        {
-            Debug.LogError("Trying to add element when queue is full");
-            return;
-        }
-
-        if(element.ManaCost > Mana)
+        // Check mana first
+        if (element.ManaCost > Mana)
         {
             Debug.Log($"Not enough mana to queue {element}");
             return;
         }
 
-        _elementQueue.Add(element);
+        bool queueFull = ElementQueue.Count >= ElementImages.Count;
+
+        // If queue is full, allow the add only if the incoming element can combine
+        if (queueFull)
+        {
+            if (element is ElementCombinable elementCombFull)
+            {
+                if (elementCombFull.TryCheckIfCombinable(out Element combinedElementFull, out Element elementToRemoveFull))
+                {
+                    // Spend mana, remove matched element and add the combined element
+                    Mana -= element.ManaCost;
+
+                    int removeIndexFull = ElementQueue.IndexOf(elementToRemoveFull);
+                    if (removeIndexFull >= 0)
+                    {
+                        ElementQueue.RemoveAt(removeIndexFull);
+                    }
+
+                    AddToQueue(combinedElementFull);
+                    RefreshElementQueueUI();
+                    return;
+                }
+            }
+
+            Debug.LogError("Trying to add element when queue is full");
+            return;
+        }
+
+        // Not full: proceed normally
         Mana -= element.ManaCost;
-        Image image = ElementImages[_elementQueue.Count - 1];
+
+        // Check if the element can combine with another element and then add said element
+        if (element is ElementCombinable elementComb)
+        {
+            if (elementComb.TryCheckIfCombinable(out Element combinedElement, out Element elementToRemove))
+            {
+                int removeIndex = ElementQueue.IndexOf(elementToRemove);
+                if (removeIndex >= 0)
+                {
+                    ElementQueue.RemoveAt(removeIndex);
+                }
+
+                AddToQueue(combinedElement);
+                RefreshElementQueueUI();
+                return;
+            }
+        }
+
+        AddToQueue(element);
+        RefreshElementQueueUI();
+    }
+
+    private void AddToQueue(Element element)
+    {
+        ElementQueue.Add(element);        
+        Image image = ElementImages[ElementQueue.Count - 1];
         image.sprite = element.ElementSprite;
         image.gameObject.SetActive(true);
 
@@ -125,7 +173,7 @@ public class SpellManager : MonoBehaviour
     {
         SpellData spellData = new SpellData();
 
-        foreach(Element element in _elementQueue)
+        foreach(Element element in ElementQueue)
         {
             element.ApplyElement(spellData);
         }
@@ -137,12 +185,31 @@ public class SpellManager : MonoBehaviour
 
     private void ClearElementQueue()
     {
-        if(_elementQueue.Count > 0)
-            _elementQueue.Clear();
+        if(ElementQueue.Count > 0)
+            ElementQueue.Clear();
 
         foreach (var element in ElementImages)
         {
+            element.sprite = null;
             element.gameObject.SetActive(false);
+        }
+    }
+
+    // Ensures ElementImages reflect ElementQueue order; clears unused slots
+    private void RefreshElementQueueUI()
+    {
+        for (int i = 0; i < ElementImages.Count; i++)
+        {
+            if (i < ElementQueue.Count)
+            {
+                ElementImages[i].sprite = ElementQueue[i].ElementSprite;
+                ElementImages[i].gameObject.SetActive(true);
+            }
+            else
+            {
+                ElementImages[i].sprite = null;
+                ElementImages[i].gameObject.SetActive(false);
+            }
         }
     }
 }

@@ -12,7 +12,10 @@ public class PlayerMovement : MonoBehaviour
 
 
     [Space(10), Header("Visuals")]
+    [SerializeField] private LayerMask _groundMask;
     [SerializeField] private Transform _visualRoot;
+
+    private Vector3 _previousMousePos = Vector3.zero;
 
     private void Awake()
     {
@@ -50,11 +53,22 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleRotation(Vector3 moveDirection)
     {
-        if (_movementInput.sqrMagnitude < 0.0001f)
-            return;
+        Vector3 mousePos = Mouse.current.position.ReadValue();
+        Ray ray = Camera.main.ScreenPointToRay(mousePos);
 
-        Quaternion lookRotation = Quaternion.LookRotation(moveDirection);
-        _visualRoot.rotation = lookRotation;
+        if(Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, _groundMask, QueryTriggerInteraction.Ignore))
+        {
+            Vector3 targetPos = hit.point;
+            Vector3 origin = _visualRoot.position;
+            targetPos.y = origin.y;
+
+            Vector3 lookdirection = targetPos - origin;
+            if(lookdirection.sqrMagnitude < 0.0001f)
+                return;
+
+            Quaternion lookRotation = Quaternion.LookRotation(lookdirection);
+            _visualRoot.rotation = lookRotation;
+        }
     }
 
     private void OnMove(InputValue inputValue)

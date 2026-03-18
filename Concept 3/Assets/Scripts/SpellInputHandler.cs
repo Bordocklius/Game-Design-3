@@ -1,8 +1,12 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class SpellInputHandler : MonoBehaviour
 {
+    public Transform StartPoint;
+    public LayerMask GroundMask;
+
     public FireElement FireElement;
     public WindElement WindElement;
 
@@ -30,8 +34,23 @@ public class SpellInputHandler : MonoBehaviour
 
     public void OnAttack(InputValue inputValue)
     {
+        if (SpellManager.Instance.IsElementQueueEmpty)
+            return;
+
+        Vector2 mouseScreenPos = Mouse.current.position.ReadValue();
+        Ray ray = Camera.main.ScreenPointToRay(mouseScreenPos);
+        Vector3 targetPos = Vector3.zero;
+
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, GroundMask))
+        {
+            targetPos = hitInfo.point;
+        }
+
         SpellData spell = SpellManager.Instance.CastElementQueue();
         GameObject projectile = Instantiate(spell.ProjectilePrefab);
-        
+        projectile.transform.position = StartPoint.position;
+
+        Vector3 direction = (targetPos - projectile.transform.position).normalized;
+        projectile.GetComponent<Rigidbody>().AddForce(direction * spell.Speed, ForceMode.VelocityChange);        
     }
 }

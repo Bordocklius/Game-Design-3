@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 221344780}
   - component: {fileID: 221344779}
   - component: {fileID: 221344778}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1315,6 +1315,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ad9a98176390534986d05a96a8096f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellInputHandler
+  StartPoint: {fileID: 941461695311448490}
+  GroundMask:
+    serializedVersion: 2
+    m_Bits: 64
   FireElement: {fileID: 11400000, guid: 0f833657b35a8ba43a3745c01287b0a9, type: 2}
   WindElement: {fileID: 11400000, guid: 95730a1a376ba154e8c997d3746277c7, type: 2}
 --- !u!1 &2091011228
@@ -1392,6 +1396,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 816434320194183955, guid: c6f346ed6d4669a478df6c33da1a8a8a, type: 3}
+      propertyPath: _groundMask.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 1765590271205046779, guid: c6f346ed6d4669a478df6c33da1a8a8a, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1444,6 +1452,11 @@ PrefabInstance:
       insertIndex: 3
       addedObject: {fileID: 2083390559}
   m_SourcePrefab: {fileID: 100100000, guid: c6f346ed6d4669a478df6c33da1a8a8a, type: 3}
+--- !u!4 &941461695311448490 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8124817758313726247, guid: c6f346ed6d4669a478df6c33da1a8a8a, type: 3}
+  m_PrefabInstance: {fileID: 941461695311448489}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

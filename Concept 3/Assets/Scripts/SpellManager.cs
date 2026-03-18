@@ -32,6 +32,7 @@ public class SpellManager : MonoBehaviour
 
     [Space(10), Header("SpellQueue")]
     [SerializeField] private Queue<Element> _elementQueue = new(5);
+    public bool IsElementQueueEmpty => _elementQueue.Count > 0;
     public RectTransform ElementQueueParent;
     public List<Image> ElementImages;
 
@@ -61,10 +62,7 @@ public class SpellManager : MonoBehaviour
     private void Start()
     {
         UpdateManaUI();
-        foreach (var element in ElementImages)
-        {
-            element.gameObject.SetActive(false);
-        }
+        ClearElementQueue();
     }
 
     // Update is called once per frame
@@ -108,7 +106,14 @@ public class SpellManager : MonoBehaviour
             return;
         }
 
+        if(element.ManaCost > Mana)
+        {
+            Debug.Log($"Not enough mana to queue {element}");
+            return;
+        }
+
         _elementQueue.Enqueue(element);
+        Mana -= element.ManaCost;
         Image image = ElementImages[_elementQueue.Count - 1];
         image.sprite = element.ElementSprite;
         image.gameObject.SetActive(true);
@@ -125,6 +130,19 @@ public class SpellManager : MonoBehaviour
             element.ApplyElement(spellData);
         }
 
+        ClearElementQueue();
+
         return spellData;
+    }
+
+    private void ClearElementQueue()
+    {
+        if(_elementQueue.Count > 0)
+            _elementQueue.Clear();
+
+        foreach (var element in ElementImages)
+        {
+            element.gameObject.SetActive(false);
+        }
     }
 }

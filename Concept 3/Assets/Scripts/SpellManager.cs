@@ -31,7 +31,7 @@ public class SpellManager : MonoBehaviour
 
 
     [Space(10), Header("SpellQueue")]
-    [SerializeField] private Queue<Element> _elementQueue = new(5);
+    [SerializeField] private List<Element> _elementQueue = new(5);
     public bool IsElementQueueEmpty => _elementQueue.Count <= 0;
     public RectTransform ElementQueueParent;
     public List<Image> ElementImages;
@@ -112,7 +112,7 @@ public class SpellManager : MonoBehaviour
             return;
         }
 
-        _elementQueue.Enqueue(element);
+        _elementQueue.Add(element);
         Mana -= element.ManaCost;
         Image image = ElementImages[_elementQueue.Count - 1];
         image.sprite = element.ElementSprite;

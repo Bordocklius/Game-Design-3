@@ -11,6 +11,7 @@ public class SpellInputHandler : MonoBehaviour
     public FireElementCombineable FireElement;
     public WaterElementCombineable WaterElement;
     public WindElement WindElement;
+    public EarthElement EarthElement;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -39,6 +40,11 @@ public class SpellInputHandler : MonoBehaviour
         SpellManager.Instance.AddElementToQueue(WindElement);
     }
 
+    public void OnSpellSlot4(InputValue inputValue)
+    {
+        SpellManager.Instance.AddElementToQueue(EarthElement);
+    }
+
     public void OnAttack(InputValue inputValue)
     {
         if (SpellManager.Instance.IsElementQueueEmpty)
@@ -56,6 +62,8 @@ public class SpellInputHandler : MonoBehaviour
         SpellData spell = SpellManager.Instance.CastElementQueue();
         GameObject projectile = Instantiate(spell.ProjectilePrefab);
         projectile.transform.position = StartPoint.position;
+        if (spell.ProjectileScale > 1)
+            projectile.transform.localScale *= spell.ProjectileScale;
 
         Vector3 direction = (targetPos - projectile.transform.position).normalized;
         projectile.GetComponent<Rigidbody>().AddForce(direction * spell.Speed, ForceMode.VelocityChange);        

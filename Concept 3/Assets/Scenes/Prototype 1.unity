@@ -1939,6 +1939,7 @@ MonoBehaviour:
   FireElement: {fileID: 11400000, guid: 9034325649601954392fbe656f439387, type: 2}
   WaterElement: {fileID: 11400000, guid: d0b1b65abe6f58548a440f35993c9994, type: 2}
   WindElement: {fileID: 11400000, guid: 95730a1a376ba154e8c997d3746277c7, type: 2}
+  EarthElement: {fileID: 11400000, guid: 06472944b5e7c9f40ad6e06d6b2a5c17, type: 2}
 --- !u!1 &2091011228
 GameObject:
   m_ObjectHideFlags: 0

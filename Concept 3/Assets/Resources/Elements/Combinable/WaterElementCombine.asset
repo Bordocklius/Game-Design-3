@@ -20,4 +20,5 @@ MonoBehaviour:
   ResultingElements:
   - {fileID: 11400000, guid: 51cf6c72a75fe3743b22207eb368beaf, type: 2}
   ProjectilePrefab: {fileID: 1112050095360076018, guid: 073c445a1f49d924e827714bb98e07ba, type: 3}
+  Priority: 1
   Damage: 10

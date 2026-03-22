@@ -6,12 +6,13 @@ using UnityEngine;
 public class FireElementCombineable : ElementCombinable
 {
     public GameObject ProjectilePrefab;
+    public int Priority;
     public float Damage;
 
     public override void ApplyElement(SpellData spell)
     {
         base.ApplyElement(spell);
-        spell.ProjectilePrefab = ProjectilePrefab;
+        spell.SetSpellProjectile(ProjectilePrefab, Priority);
         spell.Damage += Damage;
     }
 }

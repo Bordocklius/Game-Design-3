@@ -7,6 +7,7 @@ public class SpellInputHandler : MonoBehaviour
     public Transform StartPoint;
     public LayerMask GroundMask;
 
+    public GameObject GenericProjectile;
     public FireElementCombineable FireElement;
     public WaterElementCombineable WaterElement;
     public WindElement WindElement;

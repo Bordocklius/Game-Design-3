@@ -112,48 +112,32 @@ public class SpellManager : MonoBehaviour
         // If queue is full, allow the add only if the incoming element can combine
         if (queueFull)
         {
-            if (element is ElementCombinable elementCombFull)
-            {
-                if (elementCombFull.TryCheckIfCombinable(out Element combinedElementFull, out Element elementToRemoveFull))
-                {
-                    // Spend mana, remove matched element and add the combined element
-                    Mana -= element.ManaCost;
-
-                    int removeIndexFull = ElementQueue.IndexOf(elementToRemoveFull);
-                    if (removeIndexFull >= 0)
-                    {
-                        ElementQueue.RemoveAt(removeIndexFull);
-                    }
-
-                    AddToQueue(combinedElementFull);
-                    RefreshElementQueueUI();
-                    return;
-                }
-            }
+           
 
             Debug.LogError("Trying to add element when queue is full");
             return;
         }
 
-        // Not full: proceed normally
-        Mana -= element.ManaCost;
-
-        // Check if the element can combine with another element and then add said element
-        if (element is ElementCombinable elementComb)
+        if (element is ElementCancelable elementCombFull)
         {
-            if (elementComb.TryCheckIfCombinable(out Element combinedElement, out Element elementToRemove))
+            if (elementCombFull.TryCheckIfCancelable(out Element elementToRemove))
             {
-                int removeIndex = ElementQueue.IndexOf(elementToRemove);
-                if (removeIndex >= 0)
+                // Spend mana, remove matched element and add the combined element
+                Mana -= element.ManaCost;
+
+                int removeIndexFull = ElementQueue.IndexOf(elementToRemove);
+                if (removeIndexFull >= 0)
                 {
-                    ElementQueue.RemoveAt(removeIndex);
+                    ElementQueue.RemoveAt(removeIndexFull);
                 }
 
-                AddToQueue(combinedElement);
                 RefreshElementQueueUI();
                 return;
             }
         }
+
+        // Not full: proceed normally
+        Mana -= element.ManaCost;
 
         AddToQueue(element);
         RefreshElementQueueUI();

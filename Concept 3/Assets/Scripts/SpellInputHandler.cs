@@ -8,8 +8,8 @@ public class SpellInputHandler : MonoBehaviour
     public LayerMask GroundMask;
 
     public GameObject GenericProjectile;
-    public FireElementCombineable FireElement;
-    public WaterElementCombineable WaterElement;
+    public FireElementCancelable FireElement;
+    public WaterElementCancelable WaterElement;
     public WindElement WindElement;
     public EarthElement EarthElement;
 

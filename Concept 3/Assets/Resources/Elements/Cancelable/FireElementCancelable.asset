@@ -9,16 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b97c1eee38950349b5f1d1df8ca5707, type: 3}
-  m_Name: FireElementCombine
-  m_EditorClassIdentifier: Assembly-CSharp::FireElementCombineable
+  m_Script: {fileID: 11500000, guid: 5a56fa4191d9d2b42a03a0f4db216e2e, type: 3}
+  m_Name: FireElementCancelable
+  m_EditorClassIdentifier: Assembly-CSharp::FireElementCancelable
   ElementName: Fire
   ManaCost: 10
   ElementSprite: {fileID: 21300000, guid: a6a7705795462454194a85b6c3dcbf65, type: 3}
-  CombinableElements:
-  - {fileID: 11400000, guid: d0b1b65abe6f58548a440f35993c9994, type: 2}
-  ResultingElements:
-  - {fileID: 11400000, guid: 51cf6c72a75fe3743b22207eb368beaf, type: 2}
+  CancelableElements:
+  - {fileID: 11400000, guid: ea04ac763ddf9204882c0652ba3b4a4c, type: 2}
   ProjectilePrefab: {fileID: 1112050095360076018, guid: dc235791668a9864999de29ea8068b90, type: 3}
   Priority: 1
   Damage: 10

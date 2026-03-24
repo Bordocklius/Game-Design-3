@@ -9,5 +9,6 @@ public class WindElement: Element
     {
         base.ApplyElement(spell);
         spell.Speed += Speed;
+        spell.AddPlayerBuff("speed", Speed);
     }
 }

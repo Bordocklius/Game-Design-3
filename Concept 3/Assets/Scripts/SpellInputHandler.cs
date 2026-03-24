@@ -13,10 +13,12 @@ public class SpellInputHandler : MonoBehaviour
     public WindElement WindElement;
     public EarthElement EarthElement;
 
+    private PlayerMovement _playerMovement;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        _playerMovement = GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
@@ -50,6 +52,20 @@ public class SpellInputHandler : MonoBehaviour
         if (SpellManager.Instance.IsElementQueueEmpty)
             return;
 
+        SpellData spell = SpellManager.Instance.CastElementQueue();
+
+        // No projectile - apply all buffs to player
+        if (spell.ProjectilePrefab == null)
+        {
+            var buffs = spell.GetAllPlayerBuffs();
+            foreach (var buff in buffs)
+            {
+                ApplyPlayerBuff(buff.Key, buff.Value);
+            }
+            return;
+        }
+
+        // Has projectile - spawn and fire it
         Vector2 mouseScreenPos = Mouse.current.position.ReadValue();
         Ray ray = Camera.main.ScreenPointToRay(mouseScreenPos);
         Vector3 targetPos = Vector3.zero;
@@ -59,7 +75,6 @@ public class SpellInputHandler : MonoBehaviour
             targetPos = hitInfo.point;
         }
 
-        SpellData spell = SpellManager.Instance.CastElementQueue();
         GameObject projectile = Instantiate(spell.ProjectilePrefab);
         projectile.transform.position = StartPoint.position;
         if (spell.ProjectileScale > 1)
@@ -67,5 +82,24 @@ public class SpellInputHandler : MonoBehaviour
 
         Vector3 direction = (targetPos - projectile.transform.position).normalized;
         projectile.GetComponent<Rigidbody>().AddForce(direction * spell.Speed, ForceMode.VelocityChange);        
+    }
+
+    private void ApplyPlayerBuff(string buffType, float value)
+    {
+        switch (buffType.ToLower())
+        {
+            case "speed":
+                StartCoroutine(_playerMovement.ApplySpeedBuff(value, 5f));
+                break;
+            case "damage":
+                // TODO: Implement damage buff if you have a player combat system
+                break;
+            case "health":
+                // TODO: Implement health buff if needed
+                break;
+            default:
+                Debug.LogWarning($"Unknown buff type: {buffType}");
+                break;
+        }
     }
 }

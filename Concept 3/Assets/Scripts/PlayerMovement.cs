@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private CharacterController _charController;
     [SerializeField, Min(1f)] private float _movementSpeed = 5f;
+
 
     private Vector2 _movementInput;
     private float _verticalVelocity;
@@ -77,4 +79,15 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
+    public IEnumerator ApplySpeedBuff(float buffAmount, float duration)
+    {
+        _movementSpeed += buffAmount;
+        float t = 0f;
+        while(t < duration)
+        {
+            t += Time.deltaTime;
+            yield return null;
+        }
+        _movementSpeed -= buffAmount;
+    }
 }

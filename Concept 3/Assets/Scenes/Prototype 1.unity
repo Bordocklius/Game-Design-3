@@ -131,6 +131,18 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: a6a7705795462454194a85b6c3dcbf65, type: 3}
+    - target: {fileID: 266793456930239859, guid: 60629848506d128408fd30cf6723a3c6, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 266793456930239859, guid: 60629848506d128408fd30cf6723a3c6, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 266793456930239859, guid: 60629848506d128408fd30cf6723a3c6, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4256976520318494536, guid: 60629848506d128408fd30cf6723a3c6, type: 3}
       propertyPath: m_Name
       value: ElementUIDisplay
@@ -213,6 +225,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5241253873096425993, guid: 60629848506d128408fd30cf6723a3c6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6701993371236557936, guid: 60629848506d128408fd30cf6723a3c6, type: 3}
+      propertyPath: m_EffectColor.a
+      value: 0.5019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 6701993371236557936, guid: 60629848506d128408fd30cf6723a3c6, type: 3}
+      propertyPath: m_EffectColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6701993371236557936, guid: 60629848506d128408fd30cf6723a3c6, type: 3}
+      propertyPath: m_EffectColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6701993371236557936, guid: 60629848506d128408fd30cf6723a3c6, type: 3}
+      propertyPath: m_EffectColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6701993371236557936, guid: 60629848506d128408fd30cf6723a3c6, type: 3}
+      propertyPath: m_UseGraphicAlpha
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -10,6 +10,11 @@ public class CameraFollower : MonoBehaviour
 
     private void Awake()
     {
+        if (_playerTransform == null)
+        {
+            _playerTransform = GameObject.Find("Player").transform;
+        }
+
         _offset = transform.position - _playerTransform.position;   
     }
 

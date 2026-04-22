@@ -1093,8 +1093,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraFollower
   _playerTransform: {fileID: 680970254}
-  _followSpeed: 3.5
+  _followSpeed: 2.5
   _offset: {x: 0, y: 2, z: -3}
+  _enableBobbing: 1
+  _bobAmplitude: 0.05
+  _bobFrequency: 6
+  _bobSmoothTime: 0.08
+  _movementThreshold: 0.1
+  _maxSpeedForBobbing: 6
 --- !u!1001 &1058920702
 PrefabInstance:
   m_ObjectHideFlags: 0

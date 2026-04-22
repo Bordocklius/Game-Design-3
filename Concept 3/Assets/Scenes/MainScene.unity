@@ -1103,6 +1103,10 @@ MonoBehaviour:
   _bobSmoothTime: 0.08
   _movementThreshold: 0.1
   _maxSpeedForBobbing: 6
+  _enableMouseLookAhead: 1
+  _mouseLookDistance: 6
+  _mouseSmoothTime: 0.15
+  _raycastDistance: 100
 --- !u!1001 &1058920702
 PrefabInstance:
   m_ObjectHideFlags: 0

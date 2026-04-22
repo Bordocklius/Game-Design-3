@@ -1095,8 +1095,10 @@ MonoBehaviour:
   _playerTransform: {fileID: 680970254}
   _followSpeed: 2.5
   _offset: {x: 0, y: 2, z: -3}
-  _enableBobbing: 1
-  _bobAmplitude: 0.05
+  _leadDistance: 8
+  _leadSmoothTime: 0.15
+  _enableBobbing: 0
+  _bobAmplitude: 0.15
   _bobFrequency: 6
   _bobSmoothTime: 0.08
   _movementThreshold: 0.1

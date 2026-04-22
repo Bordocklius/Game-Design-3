@@ -1,11 +1,20 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class CameraFollower : MonoBehaviour
+public class CameraFollow : MonoBehaviour
 {
     [SerializeField] private Transform _playerTransform;
     [SerializeField, Min(0f)] private float _followSpeed = 5f;
     [SerializeField] private Vector3 _offset = new Vector3(0f, 2f, -3f);
 
+
+    [Space(10), Header("Leading")]
+    [SerializeField] private float _leadDistance = 2.5f;
+    [SerializeField] private float _leadSmoothTime = 0.15f;
+
+    private Vector3 _localOffset;
+    private Vector3 _currentLead;
+    private Vector3 _leadVelocity;
 
     [Space(10), Header("Bobbing")]
     [SerializeField] private bool _enableBobbing;
@@ -14,6 +23,15 @@ public class CameraFollower : MonoBehaviour
     [SerializeField] private float _bobSmoothTime = 0.08f;
     [SerializeField] private float _movementThreshold = 0.1f;
     [SerializeField] private float _maxSpeedForBobbing = 6f;
+
+    [Space(10), Header("Mouse Lookahead")]
+    [SerializeField] private bool _enableMouseLookAhead;
+    [SerializeField] private float _mouseLookDistance;
+    [SerializeField] private float _mouseSmoothTime;
+    [SerializeField] private float _raycastDistance;
+
+    private Vector3 _currentMouseLookOffset;
+    private Vector3 _mouseLookVelocity;
 
     private Vector3 _velocity = Vector3.zero;
 
@@ -33,7 +51,8 @@ public class CameraFollower : MonoBehaviour
             _playerTransform = GameObject.Find("Player").transform;
         }
 
-        _offset = transform.position - _playerTransform.position;   
+        _localOffset = _playerTransform.InverseTransformDirection(transform.position - _playerTransform.position);
+        //_offset = transform.position - _playerTransform.position;   
 
         if(_playerController == null && _playerTransform != null )
         {
@@ -47,11 +66,30 @@ public class CameraFollower : MonoBehaviour
         if (_playerTransform == null)
             return;
 
+        float speed;
+        Vector3 horizontalVel;
+        (speed, horizontalVel) = CalculateSpeed();
+        Vector3 bobOffset = CalculateBobOffset(speed);
+        Vector3 desiredLead = CalculateMovementLead(speed, horizontalVel);
+        Vector3 mouseOffset = CalculateMouseLookAhead();
+
+        _currentLead = Vector3.SmoothDamp(_currentLead, desiredLead, ref _leadVelocity, _leadSmoothTime);
+
+        Vector3 rotatedOffset = _playerTransform.TransformDirection(_localOffset);
+        Vector3 targetPosition = _playerTransform.position + rotatedOffset + _currentLead + bobOffset + mouseOffset;
+
+        //Vector3 targetPosition = _playerTransform.position + _offset + bobOffset;
+        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref _velocity, 1f / _followSpeed);
+    }
+
+    private (float, Vector3) CalculateSpeed()
+    {
         // compute horizontal movement speed (prefer CharacterController.velocity)
         float speed = 0f;
+        Vector3 horizontalVel = Vector3.zero;
         if (_playerController != null)
         {
-            Vector3 horizontalVel = Vector3.ProjectOnPlane(_playerController.velocity, Vector3.up);
+            horizontalVel = Vector3.ProjectOnPlane(_playerController.velocity, Vector3.up);
             speed = horizontalVel.magnitude;
         }
         else
@@ -62,6 +100,11 @@ public class CameraFollower : MonoBehaviour
             _previousPlayerPos = _playerTransform.position;
         }
 
+        return (speed, horizontalVel);
+    }
+
+    private Vector3 CalculateBobOffset(float speed)
+    {
         Vector3 bobOffset = Vector3.zero;
         if (_enableBobbing && speed > _movementThreshold)
         {
@@ -79,8 +122,44 @@ public class CameraFollower : MonoBehaviour
             _currentBobY = Mathf.SmoothDamp(_currentBobY, 0f, ref _bobVelocity, _bobSmoothTime);
             bobOffset = transform.up * _currentBobY;
         }
+        return bobOffset;
+    }
 
-        Vector3 targetPosition = _playerTransform.position + _offset + bobOffset;
-        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref _velocity, 1f / _followSpeed);
+    private Vector3 CalculateMovementLead(float speed, Vector3 horizontalVel)
+    {
+        Vector3 desiredLead = Vector3.zero;
+        if (speed > _movementThreshold)
+        {
+            Vector3 movementDir = horizontalVel.magnitude > 0.001f ? horizontalVel.normalized : Vector3.zero;
+            float speedNormalized = Mathf.Clamp01(speed / Mathf.Max(0.0001f, _maxSpeedForBobbing));
+            float leadMag = Mathf.Lerp(0f, _leadDistance, speedNormalized);
+            desiredLead = movementDir * leadMag;
+        }
+        return desiredLead;
+    }
+
+    private Vector3 CalculateMouseLookAhead()
+    {
+        Vector3 desiredMouseOffset = Vector3.zero;
+
+        if (_enableMouseLookAhead)
+        {
+            Vector2 mousePos = Mouse.current.position.ReadValue();
+            Ray mouseRay = Camera.main.ScreenPointToRay(mousePos);
+            Vector3 mouseWorldPos = mouseRay.origin + mouseRay.direction * _raycastDistance;
+
+            // Check if there's a hit point closer than the default raycast distance
+            if (Physics.Raycast(mouseRay, out RaycastHit hit, _raycastDistance))
+            {
+                mouseWorldPos = hit.point;
+            }
+
+            // Calculate direction from player to mouse point
+            Vector3 dirToMouse = (mouseWorldPos - _playerTransform.position).normalized;
+            desiredMouseOffset = dirToMouse * _mouseLookDistance;
+        }
+
+        _currentMouseLookOffset = Vector3.SmoothDamp(_currentMouseLookOffset, desiredMouseOffset, ref _mouseLookVelocity, _mouseSmoothTime);
+        return _currentMouseLookOffset;
     }
 }

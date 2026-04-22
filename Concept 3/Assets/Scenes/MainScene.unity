@@ -1093,7 +1093,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraFollower
   _playerTransform: {fileID: 680970254}
-  _followSpeed: 5
+  _followSpeed: 3.5
   _offset: {x: 0, y: 2, z: -3}
 --- !u!1001 &1058920702
 PrefabInstance:
@@ -2124,9 +2124,9 @@ AudioListener:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 5388444162290784637}
   - {fileID: 623868030}
   - {fileID: 646207803}
-  - {fileID: 5388444162290784637}
   - {fileID: 1058920702}
   - {fileID: 1950434494}
   - {fileID: 221344781}

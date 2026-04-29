@@ -29,6 +29,7 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private float _mouseLookDistance;
     [SerializeField] private float _mouseSmoothTime;
     [SerializeField] private float _raycastDistance;
+    [SerializeField] private float _mouseDeadzoneRadius = 100f;
 
     private Vector3 _currentMouseLookOffset;
     private Vector3 _mouseLookVelocity;
@@ -145,18 +146,29 @@ public class CameraFollow : MonoBehaviour
         if (_enableMouseLookAhead)
         {
             Vector2 mousePos = Mouse.current.position.ReadValue();
-            Ray mouseRay = Camera.main.ScreenPointToRay(mousePos);
-            Vector3 mouseWorldPos = mouseRay.origin + mouseRay.direction * _raycastDistance;
 
-            // Check if there's a hit point closer than the default raycast distance
-            if (Physics.Raycast(mouseRay, out RaycastHit hit, _raycastDistance))
+            // Project player position to screen space
+            Vector3 playerScreenPos = Camera.main.WorldToScreenPoint(_playerTransform.position);
+            Vector2 playerScreenPos2D = new Vector2(playerScreenPos.x, playerScreenPos.y);
+
+            // Calculate distance from player to mouse position in screen space
+            float distanceFromPlayer = Vector2.Distance(mousePos, playerScreenPos2D);
+
+            if (distanceFromPlayer > _mouseDeadzoneRadius)
             {
-                mouseWorldPos = hit.point;
-            }
+                Ray mouseRay = Camera.main.ScreenPointToRay(mousePos);
+                Vector3 mouseWorldPos = mouseRay.origin + mouseRay.direction * _raycastDistance;
 
-            // Calculate direction from player to mouse point
-            Vector3 dirToMouse = (mouseWorldPos - _playerTransform.position).normalized;
-            desiredMouseOffset = dirToMouse * _mouseLookDistance;
+                // Check if there's a hit point closer than the default raycast distance
+                if (Physics.Raycast(mouseRay, out RaycastHit hit, _raycastDistance))
+                {
+                    mouseWorldPos = hit.point;
+                }
+
+                // Calculate direction from player to mouse point
+                Vector3 dirToMouse = (mouseWorldPos - _playerTransform.position).normalized;
+                desiredMouseOffset = dirToMouse * _mouseLookDistance;
+            }            
         }
 
         _currentMouseLookOffset = Vector3.SmoothDamp(_currentMouseLookOffset, desiredMouseOffset, ref _mouseLookVelocity, _mouseSmoothTime);

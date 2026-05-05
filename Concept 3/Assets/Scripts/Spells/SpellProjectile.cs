@@ -1,8 +1,10 @@
+using Assets.Scripts.Interfaces;
 using UnityEngine;
 
 public class SpellProjectile : MonoBehaviour
 {
     [Space(10), Header("ProjectileSettings")]
+    public SpellData SpellData;
     public float TTL;
 
     private float _timer = 0f;
@@ -20,5 +22,16 @@ public class SpellProjectile : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        GameObject obj = collision.gameObject;
+        if (obj.TryGetComponent<IDamagable>(out IDamagable damagable))
+        {
+            damagable.TakeDamage(SpellData.Damage, SpellData.Element);
+        }
+
+        Destroy(gameObject);
     }
 }

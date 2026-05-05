@@ -76,11 +76,14 @@ public class SpellInputHandler : MonoBehaviour
         }
 
         GameObject projectile = Instantiate(spell.ProjectilePrefab);
+        SpellProjectile spellProjectile = projectile.GetComponent<SpellProjectile>();
+        spellProjectile.SpellData = spell;
         projectile.transform.position = StartPoint.position;
         if (spell.ProjectileScale > 1)
             projectile.transform.localScale *= spell.ProjectileScale;
 
         Vector3 direction = (targetPos - projectile.transform.position).normalized;
+        direction.y = 0f;
         projectile.GetComponent<Rigidbody>().AddForce(direction * spell.Speed, ForceMode.VelocityChange);        
     }
 

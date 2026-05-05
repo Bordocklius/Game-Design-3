@@ -4,6 +4,7 @@ using UnityEngine;
 public class SpellData
 {
     public GameObject ProjectilePrefab;
+    public Element Element;
     private int _projectilePriority = 0;
     public float ProjectileScale = 1f;
     public float Damage;
@@ -13,12 +14,13 @@ public class SpellData
     // Buff system for non-projectile spells
     private Dictionary<string, float> _playerBuffs = new Dictionary<string, float>();
 
-    public void SetSpellProjectile(GameObject projectilePrefab, int priority)
+    public void SetSpellProjectile(GameObject projectilePrefab, int priority, Element element)
     {
         if(priority > _projectilePriority)
         {
             _projectilePriority = priority;
             ProjectilePrefab = projectilePrefab;
+            Element = element;
         }
     }
 

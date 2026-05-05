@@ -10,7 +10,7 @@ public class WaterElementCombineable : ElementCombinable
     public override void ApplyElement(SpellData spell)
     {
         base.ApplyElement(spell);
-        spell.SetSpellProjectile(ProjectilePrefab, Priority);
+        spell.SetSpellProjectile(ProjectilePrefab, Priority, this);
         spell.Damage += Damage;
     }
 }

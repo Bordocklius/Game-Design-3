@@ -84,7 +84,9 @@ public class SpellInputHandler : MonoBehaviour
 
         Vector3 direction = (targetPos - projectile.transform.position).normalized;
         direction.y = 0f;
-        projectile.GetComponent<Rigidbody>().AddForce(direction * spell.Speed, ForceMode.VelocityChange);        
+        Rigidbody rb = projectile.GetComponent<Rigidbody>();
+        rb.transform.forward = direction;
+        rb.AddForce(direction * spell.Speed, ForceMode.VelocityChange);        
     }
 
     private void ApplyPlayerBuff(string buffType, float value)

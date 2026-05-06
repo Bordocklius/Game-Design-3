@@ -31,8 +31,6 @@ public class SpellProjectile : MonoBehaviour
         {
             damagable.TakeDamage(SpellData.Damage, SpellData.Element);
             Destroy(gameObject);
-        }
-
-        
+        }        
     }
 }

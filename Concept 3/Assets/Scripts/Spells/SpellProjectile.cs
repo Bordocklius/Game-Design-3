@@ -30,8 +30,9 @@ public class SpellProjectile : MonoBehaviour
         if (obj.TryGetComponent<IDamagable>(out IDamagable damagable))
         {
             damagable.TakeDamage(SpellData.Damage, SpellData.Element);
+            Destroy(gameObject);
         }
 
-        Destroy(gameObject);
+        
     }
 }

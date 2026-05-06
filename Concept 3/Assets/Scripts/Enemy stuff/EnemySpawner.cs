@@ -97,7 +97,7 @@ public class EnemySpawner : MonoBehaviour
 
     private GameObject PickRandomEnemyPrefab()
     {
-        return _enemyPrefabs[Random.Range(0, _enemyPrefabs.Length - 1)];
+        return _enemyPrefabs[Random.Range(0, _enemyPrefabs.Length)];
     }
 
     public void EnemyKilled()

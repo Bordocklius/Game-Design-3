@@ -13,6 +13,6 @@ public class SteamElement : Element
         base.ApplyElement(spell);
         spell.SetSpellProjectile(ProjectilePrefab, Priority, this);
         spell.Damage += Damage;
-        spell.Speed += Speed;
+        spell.Speed = Speed;
     }
 }

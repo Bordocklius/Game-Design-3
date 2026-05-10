@@ -13,6 +13,10 @@ public class SpellInputHandler : MonoBehaviour
     public WindElement WindElement;
     public EarthElement EarthElement;
 
+    [Space(10), Header("Particle effects")]
+    public ParticleSystem CastingParticles;
+    public ParticleSystem AuraParticles;
+
     private PlayerMovement _playerMovement;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -30,21 +34,25 @@ public class SpellInputHandler : MonoBehaviour
     public void OnSpellSlot1(InputValue inputValue)
     {
         SpellManager.Instance.AddElementToQueue(FireElement);
+        ToggleCastingParticles(true);
     }
 
     public void OnSpellSlot2(InputValue inputValue)
     {
         SpellManager.Instance.AddElementToQueue(WaterElement);
+        ToggleCastingParticles(true);
     }
 
     public void OnSpellSlot3(InputValue inputValue)
     {
         SpellManager.Instance.AddElementToQueue(WindElement);
+        ToggleCastingParticles(true);
     }
 
     public void OnSpellSlot4(InputValue inputValue)
     {
         SpellManager.Instance.AddElementToQueue(EarthElement);
+        ToggleCastingParticles(true);
     }
 
     public void OnAttack(InputValue inputValue)
@@ -53,6 +61,7 @@ public class SpellInputHandler : MonoBehaviour
             return;
 
         SpellData spell = SpellManager.Instance.CastElementQueue();
+        ToggleCastingParticles(false);
 
         // No projectile - apply all buffs to player
         if (spell.ProjectilePrefab == null)
@@ -86,7 +95,7 @@ public class SpellInputHandler : MonoBehaviour
         direction.y = 0f;
         Rigidbody rb = projectile.GetComponent<Rigidbody>();
         rb.transform.forward = direction;
-        rb.AddForce(direction * spell.Speed, ForceMode.VelocityChange);        
+        rb.AddForce(direction * spell.Speed, ForceMode.VelocityChange);
     }
 
     private void ApplyPlayerBuff(string buffType, float value)
@@ -105,6 +114,20 @@ public class SpellInputHandler : MonoBehaviour
             default:
                 Debug.LogWarning($"Unknown buff type: {buffType}");
                 break;
+        }
+    }
+
+    private void ToggleCastingParticles(bool isPlaying)
+    {
+        if (isPlaying)
+        {
+            AuraParticles.Play();
+            CastingParticles.Play();
+        }
+        else
+        {
+            AuraParticles.Stop();
+            CastingParticles.Stop();
         }
     }
 }

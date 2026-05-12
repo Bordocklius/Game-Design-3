@@ -156,6 +156,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellProjectile
   TTL: 5
+  GroundAreaObj: {fileID: 6558180721646557059, guid: f109e01d56f653b4bacd879fab425a6b, type: 3}
+  LayerMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1001 &1490587660322470645
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 7214627633181007474}
   - component: {fileID: 5563361654460908310}
   - component: {fileID: 8874155812439117737}
-  - component: {fileID: 6091475770041883076}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,29 +91,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &6091475770041883076
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 394292330303351400}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &912750991813430894
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,7 +102,7 @@ GameObject:
   - component: {fileID: 5874696416886352432}
   - component: {fileID: 6505184981555721694}
   - component: {fileID: 4490633488708240973}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HBBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -203,7 +179,7 @@ GameObject:
   - component: {fileID: 8435363720098289886}
   - component: {fileID: 8359024540451024806}
   - component: {fileID: 4306235125361852769}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WorldCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -316,7 +292,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8964972796098824616}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -355,7 +331,8 @@ GameObject:
   - component: {fileID: 240720530969911277}
   - component: {fileID: 2994838877406720640}
   - component: {fileID: 2516436394824941037}
-  m_Layer: 0
+  - component: {fileID: 2709905655442036209}
+  m_Layer: 7
   m_Name: BaseEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -424,6 +401,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
+--- !u!136 &2709905655442036209
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2743862914569120632}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3867262414349955607
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,7 +435,7 @@ GameObject:
   - component: {fileID: 7778923012698545269}
   - component: {fileID: 1473718961702987717}
   - component: {fileID: 2515125932733092904}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -511,7 +511,7 @@ GameObject:
   - component: {fileID: 3934380851645805797}
   - component: {fileID: 643118003883560188}
   - component: {fileID: 3537000092756241731}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Icon (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -586,7 +586,7 @@ GameObject:
   - component: {fileID: 4685290131832430752}
   - component: {fileID: 9153215220054371732}
   - component: {fileID: 6490192902219739404}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -661,8 +661,7 @@ GameObject:
   - component: {fileID: 3211950475642392971}
   - component: {fileID: 6959533020490653623}
   - component: {fileID: 381511818911595601}
-  - component: {fileID: 1322241045499769122}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Visor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -741,27 +740,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1322241045499769122
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8392068265811592723}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8555309753537604766
 GameObject:
   m_ObjectHideFlags: 0
@@ -772,7 +750,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1664027912622027939}
   - component: {fileID: 6247661956267876070}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Icons
   m_TagString: Untagged
   m_Icon: {fileID: 0}

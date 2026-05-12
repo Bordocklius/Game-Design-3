@@ -7,7 +7,7 @@ public class SteamElement : Element
     public int Priority;
     public float Damage;
     public float Speed;
-
+    public GameObject GroundAreaObject;
     public override void ApplyElement(SpellData spell)
     {
         base.ApplyElement(spell);

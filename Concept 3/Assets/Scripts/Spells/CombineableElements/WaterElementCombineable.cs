@@ -6,6 +6,7 @@ public class WaterElementCombineable : ElementCombinable
     public GameObject ProjectilePrefab;
     public int Priority;
     public float Damage;
+    public GameObject GroundAreaObject;
 
     public override void ApplyElement(SpellData spell)
     {

@@ -6,6 +6,7 @@ public class SpellProjectile : MonoBehaviour
     [Space(10), Header("ProjectileSettings")]
     public SpellData SpellData;
     public float TTL;
+    public GameObject GroundAreaObj;
 
     private float _timer = 0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created

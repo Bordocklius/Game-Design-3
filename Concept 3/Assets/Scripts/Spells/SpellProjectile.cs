@@ -47,7 +47,11 @@ public class SpellProjectile : MonoBehaviour
         {
             Vector3 spawnpos = hit.point + new Vector3(0, 0.1f, 0);
             if(GroundAreaObj != null)
-                Instantiate(GroundAreaObj, spawnpos, Quaternion.identity);
+            {
+                GameObject area = Instantiate(GroundAreaObj, spawnpos, Quaternion.identity);
+                area.transform.localScale = new(SpellData.ProjectileScale, 1, SpellData.ProjectileScale);
+            }
+                
         }
     }
 }

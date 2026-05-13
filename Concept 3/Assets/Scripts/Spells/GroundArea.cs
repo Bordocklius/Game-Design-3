@@ -7,7 +7,7 @@ public class GroundArea : MonoBehaviour
     public LayerMask Layermask;
     public List<Element> TriggerableElements;
     public ParticleSystem Shockwave;
-    public ParticleSystem MagicCircle;
+    public ParticleSystem[] MagicCircle;
     public Element Element;
     public float Damage;
 
@@ -52,8 +52,11 @@ public class GroundArea : MonoBehaviour
             }
         }
 
-        MagicCircle.Stop();
-        MagicCircle.Clear();
+        foreach(ParticleSystem particles in MagicCircle)
+        {
+            particles.Stop();
+            particles.Clear();
+        }
         Shockwave.Play();
         Destroy(this.gameObject, 1.2f);
     } 

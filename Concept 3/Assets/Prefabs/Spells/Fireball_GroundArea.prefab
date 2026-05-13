@@ -53,6 +53,22 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1522707542457837415}
     - target: {fileID: 6005252548319231814, guid: 89f40f1493cc02b4f852367f852c6436, type: 3}
+      propertyPath: MagicCircle.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6005252548319231814, guid: 89f40f1493cc02b4f852367f852c6436, type: 3}
+      propertyPath: 'MagicCircle.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2702742379729996320}
+    - target: {fileID: 6005252548319231814, guid: 89f40f1493cc02b4f852367f852c6436, type: 3}
+      propertyPath: 'MagicCircle.Array.data[1]'
+      value: 
+      objectReference: {fileID: 5650675889962862616}
+    - target: {fileID: 6005252548319231814, guid: 89f40f1493cc02b4f852367f852c6436, type: 3}
+      propertyPath: 'MagicCircle.Array.data[2]'
+      value: 
+      objectReference: {fileID: 5650675889962862616}
+    - target: {fileID: 6005252548319231814, guid: 89f40f1493cc02b4f852367f852c6436, type: 3}
       propertyPath: TriggerableElements.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -148,5 +164,15 @@ PrefabInstance:
 --- !u!198 &1522707542457837415 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 8967654290457676770, guid: 89f40f1493cc02b4f852367f852c6436, type: 3}
+  m_PrefabInstance: {fileID: 7589194712439663749}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &2702742379729996320 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5534974237465274021, guid: 89f40f1493cc02b4f852367f852c6436, type: 3}
+  m_PrefabInstance: {fileID: 7589194712439663749}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &5650675889962862616 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2826298664591615133, guid: 89f40f1493cc02b4f852367f852c6436, type: 3}
   m_PrefabInstance: {fileID: 7589194712439663749}
   m_PrefabAsset: {fileID: 0}

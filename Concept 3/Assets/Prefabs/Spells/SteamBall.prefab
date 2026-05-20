@@ -9815,6 +9815,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellProjectile
   TTL: 5
+  GroundAreaObj: {fileID: 6140872703594555325, guid: b7c7e39c8278d624faa21616fe3c902e, type: 3}
+  LayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  TriggeredZone: 0
 --- !u!1 &1146426492390983885
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource AudioSource;
 
     [Space(10), Header("SoundBanks")]
-    public List<SoundBank> SoundBanks;
+    public SoundBank CastingSounds;
 
     void Start()
     {
@@ -43,5 +43,8 @@ public class AudioManager : MonoBehaviour
         AudioSource.PlayOneShot(soundbank.SoundClips[Random.Range(0, soundbank.SoundClips.Length)]);
     }
 
-
+    public void PlayCastingSound()
+    {
+        PlayRandomSound(CastingSounds);
+    }
 }

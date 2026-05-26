@@ -1494,7 +1494,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   AudioSource: {fileID: 1519554720}
-  SoundBanks: []
+  CastingSounds: {fileID: 11400000, guid: 613d900ee65656e44b0322e6ab7a275a, type: 2}
 --- !u!82 &1519554720
 AudioSource:
   m_ObjectHideFlags: 0

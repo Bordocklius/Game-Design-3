@@ -96,6 +96,7 @@ public class SpellInputHandler : MonoBehaviour
         Rigidbody rb = projectile.GetComponent<Rigidbody>();
         rb.transform.forward = direction;
         rb.AddForce(direction * spell.Speed, ForceMode.VelocityChange);
+        AudioManager.Instance.PlayCastingSound();
     }
 
     private void ApplyPlayerBuff(string buffType, float value)

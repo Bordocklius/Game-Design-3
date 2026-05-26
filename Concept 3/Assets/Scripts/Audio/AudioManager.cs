@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     [Space(10), Header("SoundBanks")]
     public SoundBank CastingSounds;
     public SoundBank MagicCircleSounds;
+    public SoundBank EnemyDeathSounds;
 
     void Start()
     {
@@ -55,5 +56,10 @@ public class AudioManager : MonoBehaviour
     public void PlayMagicCircleDetonation()
     {
         PlayRandomSound(MagicCircleSounds);
+    }
+
+    public void PlayEnemyDeathSound()
+    {
+        PlayRandomSound(EnemyDeathSounds);
     }
 }

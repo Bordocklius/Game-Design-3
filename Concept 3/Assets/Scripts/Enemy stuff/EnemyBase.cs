@@ -92,6 +92,7 @@ public class EnemyBase : MonoBehaviour, IDamagable, IHealthBar
     {
         _healthBar?.Dispose();
         EnemySpawner.Instance.EnemyKilled();
+        AudioManager.Instance.PlayEnemyDeathSound();
         Destroy(this.gameObject);
     }
 

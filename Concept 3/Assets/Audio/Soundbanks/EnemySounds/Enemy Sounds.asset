@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be773a00764edd74eaacc6d4d525c7d1, type: 3}
+  m_Name: Enemy Sounds
+  m_EditorClassIdentifier: Assembly-CSharp::SoundBank
+  SoundClips:
+  - {fileID: 8300000, guid: c1fe57344716c724385fe3baa6831c68, type: 3}
+  - {fileID: 8300000, guid: 5a93ff3f4a733f641921da67a9f89bfe, type: 3}
+  - {fileID: 8300000, guid: 63c93163de461e94b8bfa45fdf7e31ff, type: 3}

@@ -1497,6 +1497,7 @@ MonoBehaviour:
   CastingSounds: {fileID: 11400000, guid: 613d900ee65656e44b0322e6ab7a275a, type: 2}
   MagicCircleSounds: {fileID: 11400000, guid: add0e20ba9dcfee4e8424522fd38671b, type: 2}
   EnemyDeathSounds: {fileID: 11400000, guid: 96769d367991eb34793dbe746842c16b, type: 2}
+  SpellImpactSounds: {fileID: 11400000, guid: 6260c01939a0a524881ef0cb7dc76478, type: 2}
 --- !u!82 &1519554720
 AudioSource:
   m_ObjectHideFlags: 0

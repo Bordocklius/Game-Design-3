@@ -35,6 +35,7 @@ public class SpellProjectile : MonoBehaviour
         {
             damagable.TakeDamage(SpellData.Damage, SpellData.Element);
             SpawnGroundAura();
+            AudioManager.Instance.PlaySpellImpactSound();
             Destroy(gameObject);
         }        
     }

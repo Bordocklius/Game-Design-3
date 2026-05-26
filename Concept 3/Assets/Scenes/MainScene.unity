@@ -1495,6 +1495,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   AudioSource: {fileID: 1519554720}
   CastingSounds: {fileID: 11400000, guid: 613d900ee65656e44b0322e6ab7a275a, type: 2}
+  MagicCircleSounds: {fileID: 11400000, guid: add0e20ba9dcfee4e8424522fd38671b, type: 2}
 --- !u!82 &1519554720
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1507,7 +1508,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: f9274b8d9daf82e4e989ddbddbe02a21, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.5
   m_Pitch: 1
   Loop: 1

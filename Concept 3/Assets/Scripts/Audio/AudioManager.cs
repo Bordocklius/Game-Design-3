@@ -10,6 +10,7 @@ public class AudioManager : MonoBehaviour
 
     [Space(10), Header("SoundBanks")]
     public SoundBank CastingSounds;
+    public SoundBank MagicCircleSounds;
 
     void Start()
     {
@@ -38,7 +39,10 @@ public class AudioManager : MonoBehaviour
     private void PlayRandomSound(SoundBank soundbank)
     {
         if (AudioSource == null || soundbank == null || soundbank.SoundClips.Length == 0)
+        {
+            Debug.LogError("Soundbank not set for this type");
             return;
+        }
 
         AudioSource.PlayOneShot(soundbank.SoundClips[Random.Range(0, soundbank.SoundClips.Length)]);
     }
@@ -46,5 +50,10 @@ public class AudioManager : MonoBehaviour
     public void PlayCastingSound()
     {
         PlayRandomSound(CastingSounds);
+    }
+
+    public void PlayMagicCircleDetonation()
+    {
+        PlayRandomSound(MagicCircleSounds);
     }
 }

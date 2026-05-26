@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: be773a00764edd74eaacc6d4d525c7d1, type: 3}
-  m_Name: Casting Sounds
+  m_Name: Magic Circle Sounds
   m_EditorClassIdentifier: Assembly-CSharp::SoundBank
   SoundClips:
-  - {fileID: 8300000, guid: dd59153fc2224af4b9b3414316d5a840, type: 3}
-  - {fileID: 8300000, guid: afd0a14de36b6d84da142e0baba76686, type: 3}
-  - {fileID: 8300000, guid: cc21e809c570fb44fb75532e5150ecff, type: 3}
+  - {fileID: 8300000, guid: f7f5b7dd911695c43bdcb0b27c26f83e, type: 3}
+  - {fileID: 8300000, guid: b784857f3adec5a4f8f5888519baf379, type: 3}
+  - {fileID: 8300000, guid: 5b48681f0405c9445a3752c6b35d5bdc, type: 3}

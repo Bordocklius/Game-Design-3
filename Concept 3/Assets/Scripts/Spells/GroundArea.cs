@@ -58,6 +58,7 @@ public class GroundArea : MonoBehaviour
             particles.Clear();
         }
         Shockwave.Play();
+        AudioManager.Instance.PlayMagicCircleDetonation();
         Destroy(this.gameObject, 1.2f);
     } 
 }

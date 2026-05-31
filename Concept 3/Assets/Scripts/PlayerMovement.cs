@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 _movementInput;
     private float _verticalVelocity;
     private bool _isHoldingMouse;
+    private Vector3 _targetPosition;
+    private bool _hasTarget;
 
 
     [Space(10), Header("Visuals")]
@@ -34,20 +36,18 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         _moveAction.action.performed += MoveAction_Performed;
-        _moveAction.action.canceled += MoveAction_Performed;
     }    
 
     private void OnDisable()
     {
         _moveAction.action.performed -= MoveAction_Performed;
-        _moveAction.action.canceled -= MoveAction_Performed;
     }
 
     void Update()
     {
         Vector3 move = Vector3.zero;
         // Horizontal movement
-        if(_isHoldingMouse)
+        if(_hasTarget)
         {
             move = HandleMovementInput();
         }
@@ -73,18 +73,17 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 HandleMovementInput()
     {
-        Vector3 moveDir = Vector3.zero;
-        Vector3 mousePos = _mousePosAction.action.ReadValue<Vector2>();
-        Ray ray = Camera.main.ScreenPointToRay(mousePos);
-
-        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, _groundMask, QueryTriggerInteraction.Ignore))
+        Vector3 directionToTarget = _targetPosition - transform.position;
+        directionToTarget.y = 0f;
+        
+        // Check if we've reached the target
+        if (directionToTarget.sqrMagnitude < 0.1f)
         {
-            moveDir = (hit.point - transform.position);
-            moveDir.y = transform.position.y;
-            moveDir = moveDir.normalized;
+            _hasTarget = false;
+            return Vector3.zero;
         }
-
-        return moveDir;
+        
+        return directionToTarget.normalized;
     }
 
     private void HandleRotation(Vector3 moveDirection)
@@ -109,15 +108,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void MoveAction_Performed(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed)
+        Vector2 mousePos = _mousePosAction.action.ReadValue<Vector2>();
+        Ray ray = Camera.main.ScreenPointToRay(mousePos);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, _groundMask, QueryTriggerInteraction.Ignore))
         {
-            Debug.Log("Holding mouse");
-            _isHoldingMouse = true;
-        }
-        else if (ctx.canceled)
-        {
-            Debug.Log("Holding stopped");
-            _isHoldingMouse = false;
+            _targetPosition = hit.point;
+            _hasTarget = true;
         }
     }
 

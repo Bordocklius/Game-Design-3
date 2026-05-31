@@ -143,6 +143,12 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 573326780879973816, guid: 60629848506d128408fd30cf6723a3c6, type: 3}
+      propertyPath: m_text
+      value: 'Q
+
+'
+      objectReference: {fileID: 0}
     - target: {fileID: 4256976520318494536, guid: 60629848506d128408fd30cf6723a3c6, type: 3}
       propertyPath: m_Name
       value: ElementUIDisplay
@@ -958,7 +964,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 5b526e0f11d014a4b8e955cb7917c8b8, type: 3}
     - target: {fileID: 573326780879973816, guid: 60629848506d128408fd30cf6723a3c6, type: 3}
       propertyPath: m_text
-      value: '4
+      value: 'R
 
 '
       objectReference: {fileID: 0}
@@ -1167,6 +1173,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 816434320194183955, guid: c6f346ed6d4669a478df6c33da1a8a8a, type: 3}
+      propertyPath: _moveAction
+      value: 
+      objectReference: {fileID: -6430222611358088406, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    - target: {fileID: 816434320194183955, guid: c6f346ed6d4669a478df6c33da1a8a8a, type: 3}
+      propertyPath: _mousePosAction
+      value: 
+      objectReference: {fileID: -1657006744259993785, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     - target: {fileID: 1765590271205046779, guid: c6f346ed6d4669a478df6c33da1a8a8a, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1367,7 +1381,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: bb0717d08dec4894687aa81cfd8adcbe, type: 3}
     - target: {fileID: 573326780879973816, guid: 60629848506d128408fd30cf6723a3c6, type: 3}
       propertyPath: m_text
-      value: 3
+      value: E
       objectReference: {fileID: 0}
     - target: {fileID: 4256976520318494536, guid: 60629848506d128408fd30cf6723a3c6, type: 3}
       propertyPath: m_Name
@@ -1878,7 +1892,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: e30ceecb27326574fb34271700046bab, type: 3}
     - target: {fileID: 573326780879973816, guid: 60629848506d128408fd30cf6723a3c6, type: 3}
       propertyPath: m_text
-      value: '2
+      value: 'W
 
 '
       objectReference: {fileID: 0}

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -12,6 +13,8 @@ public class EnemySpawner : MonoBehaviour
     
     [Space(10), Header("Camera Settings")]
     [SerializeField, Min(1f)] private float _cameraViewPadding = 2f;
+
+    public List<Transform> Enemies;
 
     private Transform _playerTransform;
     private Camera _mainCamera;
@@ -68,7 +71,8 @@ public class EnemySpawner : MonoBehaviour
         }
 
         Vector3 spawnPosition = GetSpawnPosition();
-        Instantiate(PickRandomEnemyPrefab(), spawnPosition, Quaternion.identity);
+        GameObject enemyObj =  Instantiate(PickRandomEnemyPrefab(), spawnPosition, Quaternion.identity);
+        Enemies.Add(enemyObj.transform);
         _currentEnemies++;
     }
 
@@ -100,8 +104,30 @@ public class EnemySpawner : MonoBehaviour
         return _enemyPrefabs[Random.Range(0, _enemyPrefabs.Length)];
     }
 
-    public void EnemyKilled()
+    public void EnemyKilled(Transform enemyTransform)
     {
+        Enemies.Remove(enemyTransform.transform);
         _currentEnemies--;
+    }
+
+    public Transform GetClosestEnemy(Vector3 playerPos)
+    {
+        if (Enemies.Count == 0 || Enemies == null)
+            return null;
+
+        Transform closestTransform = null;
+        float closestDistance = Mathf.Infinity;
+
+        foreach(Transform enemy in Enemies)
+        {
+            float currentDistance = (enemy.position - playerPos).sqrMagnitude;
+            if(currentDistance < closestDistance)
+            {
+                closestTransform = enemy;
+                closestDistance = currentDistance;
+            }
+        }
+
+        return closestTransform;
     }
 }

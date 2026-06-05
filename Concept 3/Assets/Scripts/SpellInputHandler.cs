@@ -75,14 +75,21 @@ public class SpellInputHandler : MonoBehaviour
         }
 
         // Has projectile - spawn and fire it
-        Vector2 mouseScreenPos = Mouse.current.position.ReadValue();
-        Ray ray = Camera.main.ScreenPointToRay(mouseScreenPos);
-        Vector3 targetPos = Vector3.zero;
-
-        if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, GroundMask))
+        Transform target = EnemySpawner.Instance.GetClosestEnemy(this.transform.position);
+        Vector3 targetPos = this.transform.forward;
+        if(target != null)
         {
-            targetPos = hitInfo.point;
+            targetPos = target.position;
         }
+
+        //Vector2 mouseScreenPos = Mouse.current.position.ReadValue();
+        //Ray ray = Camera.main.ScreenPointToRay(mouseScreenPos);
+        //Vector3 targetPos = Vector3.zero;
+
+        //if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, GroundMask))
+        //{
+        //    targetPos = hitInfo.point;
+        //}
 
         GameObject projectile = Instantiate(spell.ProjectilePrefab);
         SpellProjectile spellProjectile = projectile.GetComponent<SpellProjectile>();

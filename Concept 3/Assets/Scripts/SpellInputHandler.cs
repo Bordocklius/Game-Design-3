@@ -80,6 +80,7 @@ public class SpellInputHandler : MonoBehaviour
         if(target != null)
         {
             targetPos = target.position;
+            StartCoroutine(_playerMovement.CastSpellRotation(targetPos, 0.2f));
         }
 
         //Vector2 mouseScreenPos = Mouse.current.position.ReadValue();
@@ -89,7 +90,7 @@ public class SpellInputHandler : MonoBehaviour
         //if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, GroundMask))
         //{
         //    targetPos = hitInfo.point;
-        //}
+        //}       
 
         GameObject projectile = Instantiate(spell.ProjectilePrefab);
         SpellProjectile spellProjectile = projectile.GetComponent<SpellProjectile>();

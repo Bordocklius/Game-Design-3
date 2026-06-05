@@ -23,7 +23,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask _groundMask;
     [SerializeField] private Transform _visualRoot;
 
-    private Vector3 _previousMousePos = Vector3.zero;    
+    private Vector3 _previousMousePos = Vector3.zero;
+    private bool _isAttacking;
 
     private void Awake()
     {
@@ -54,7 +55,8 @@ public class PlayerMovement : MonoBehaviour
 
         // Horizontal movement
         //Vector3 move = new Vector3(_movementInput.x, 0f, _movementInput.y);
-        HandleRotation(move);
+        if(!_isAttacking)
+            HandleRotation(move);
 
         move = Vector3.ClampMagnitude(move, 1f); // avoid faster diagonal speed
         move *= _movementSpeed;
@@ -131,5 +133,33 @@ public class PlayerMovement : MonoBehaviour
             yield return null;
         }
         _movementSpeed -= buffAmount;
+    }
+
+    public IEnumerator CastSpellRotation(Vector3 targetPosition, float duration = 0.3f)
+    {
+        _isAttacking = true;
+        Vector3 origin = _visualRoot.position;
+        targetPosition.y = origin.y;
+
+        Vector3 direction = (targetPosition - origin).normalized;
+        if (direction.sqrMagnitude > 0.0001f)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            float elapsed = 0f;
+            Quaternion startRotation = _visualRoot.rotation;
+
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+                float t = elapsed / duration;
+                _visualRoot.rotation = Quaternion.Slerp(startRotation, targetRotation, t);
+                yield return null;
+            }
+
+            _visualRoot.rotation = targetRotation;
+            yield return new WaitForSeconds(1f);
+        }
+
+        _isAttacking = false;
     }
 }

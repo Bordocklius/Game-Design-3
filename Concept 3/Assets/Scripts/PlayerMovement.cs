@@ -26,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 _previousMousePos = Vector3.zero;
     private bool _isAttacking;
 
+    private Coroutine _coroutine;
+
     private void Awake()
     {
         if(_charController == null)
@@ -135,6 +137,17 @@ public class PlayerMovement : MonoBehaviour
         _movementSpeed -= buffAmount;
     }
 
+    public void StartSpellRotationCoroutine(Vector3 targetPos, float duration)
+    {
+        if(_coroutine != null)
+        {
+            StopCoroutine(_coroutine);
+            _coroutine = null;
+        }
+
+        _coroutine = StartCoroutine(CastSpellRotation(targetPos, duration));
+    }
+
     public IEnumerator CastSpellRotation(Vector3 targetPosition, float duration = 0.3f)
     {
         _isAttacking = true;
@@ -160,6 +173,8 @@ public class PlayerMovement : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
 
+        if (_coroutine != null) // verify it's still active
+            _coroutine = null;
         _isAttacking = false;
     }
 }

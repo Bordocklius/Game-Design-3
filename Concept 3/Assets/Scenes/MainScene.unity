@@ -449,7 +449,7 @@ MonoBehaviour:
   _spawnInterval: 3
   _spawnRadius: 20
   _maxEnemies: 10
-  _enableSpawning: 0
+  EnableSpawning: 0
   _initialEnemy: {fileID: 1271547086}
   _cameraViewPadding: 2
   Enemies: []
@@ -1087,6 +1087,7 @@ MonoBehaviour:
   _inputHandler: {fileID: 895154806}
   _audioSource: {fileID: 1519554720}
   _enemySpawner: {fileID: 368214414}
+  _cameraFollow: {fileID: 969193348}
   _enemy: {fileID: 1271547086}
   _channelDelay: 1
   _delayTime: 2
@@ -1205,7 +1206,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6666337717543246874}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6fe4adf0e8adee4ea0b6020a388d6ac, type: 3}
   m_Name: 
@@ -1758,7 +1759,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: f9274b8d9daf82e4e989ddbddbe02a21, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.5
   m_Pitch: 1
   Loop: 1

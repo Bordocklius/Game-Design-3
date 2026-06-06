@@ -9,6 +9,7 @@ public class TutorialScript : MonoBehaviour
     [SerializeField] private SpellInputHandler _inputHandler;
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private EnemySpawner _enemySpawner;
+    [SerializeField] private CameraFollow _cameraFollow;
 
     [SerializeField] private GameObject _enemy;
 
@@ -37,5 +38,7 @@ public class TutorialScript : MonoBehaviour
         _playerInput.enabled = true;
 
         _enemySpawner.EnableSpawning = true;
+        _cameraFollow.enabled = true;
+        _audioSource.Play();
     }
 }

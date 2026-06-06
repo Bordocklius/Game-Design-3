@@ -80,7 +80,7 @@ public class SpellInputHandler : MonoBehaviour
         if(target != null)
         {
             targetPos = target.position;
-            StartCoroutine(_playerMovement.CastSpellRotation(targetPos, 0.2f));
+            _playerMovement.StartSpellRotationCoroutine(targetPos, 0.2f);
         }
 
         //Vector2 mouseScreenPos = Mouse.current.position.ReadValue();

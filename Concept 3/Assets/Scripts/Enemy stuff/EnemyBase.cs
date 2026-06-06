@@ -14,6 +14,7 @@ public class EnemyBase : MonoBehaviour, IDamagable, IHealthBar
     [Space(10), Header("Enemy Settings")]
     [SerializeField] private float _maxHealth;
     [SerializeField] private Image _hbImage;
+    [SerializeField] private bool _movementEnabled = true;
 
     private float _health;
     public float Health
@@ -64,6 +65,9 @@ public class EnemyBase : MonoBehaviour, IDamagable, IHealthBar
 
     void Update()
     {
+        if (!_movementEnabled)
+            return;
+
         Vector3 movement = (PlayerTarget.position - transform.position).normalized;
         movement = movement * Speed;
 

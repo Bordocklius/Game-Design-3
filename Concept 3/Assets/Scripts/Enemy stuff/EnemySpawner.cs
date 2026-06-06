@@ -10,11 +10,13 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField, Min(0.1f)] private float _spawnInterval = 3f;
     [SerializeField, Min(1f)] private float _spawnRadius = 15f;
     [SerializeField, Min(1)] private int _maxEnemies = 10;
-    
+    public bool EnableSpawning;
+    [SerializeField] private GameObject _initialEnemy;
+
     [Space(10), Header("Camera Settings")]
     [SerializeField, Min(1f)] private float _cameraViewPadding = 2f;
 
-    public List<Transform> Enemies;
+    public List<Transform> Enemies = new();
 
     private Transform _playerTransform;
     private Camera _mainCamera;
@@ -37,10 +39,14 @@ public class EnemySpawner : MonoBehaviour
         _playerTransform = FindFirstObjectByType<PlayerMovement>().transform;
         _mainCamera = Camera.main;
         _spawnTimer = _spawnInterval;
+
+        Enemies.Add(_initialEnemy.transform);
     }
 
     void Update()
     {
+        if (!EnableSpawning)
+            return;
         if (_playerTransform == null || _mainCamera == null)
             return;
         if (_currentEnemies >= _maxEnemies)
